@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitur 1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    {{ dropzone.load_css() }}
+    {{ dropzone.style('border: 2px dashed #0087F7;') }}
+</head>
+<body class="flex flex-col container min-h-screen w-full">
+    <header class="flex-none">
+        <div class="container bg-slate-700 py-4 text-center">
+            <span class="md:text-xl text-base text-white">Navigasi</span>
+        </div>
+    </header>
+    <main class="flex flex-grow">
+        <div class="flex flex-col md:flex-row container w-full">
+            <div class="invisible md:visible md:flex-1 md:bg-slate-500"> 
+                <h2 class="text-lg text-white">Ilustrasi </h2>
+            </div>
+            <div class="flex mb-4 md:m-auto flex-1 bg-white w-full h-full text-center">
+                <div class="w-full m-auto">
+                    <h2 class="text-2xl mb-4 md:mb-10">Judul</h2>
+                    <p class="text-2xl mb-4 md:mb-10">Unggah Gambar</p>
+                    <form class="w-3/4 m-auto" action="{{ url_for('upload_file') }}"  method="POST" enctype="multipart/form-data">
+                        {{ dropzone.create() }}
+                        <input class="mt-4 p-4 bg-slate-700 text-white text-center" type="submit" id="submit" value="Upload">
+                    </form>
+                    <!-- <h1>Fitur 1</h1> -->
+                    <!-- <a href="{{ url_for('index') }}">Back</a> -->
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="flex-none">
+        <div class="container bg-white py-4 text-center bottom-0">
+            <span class="md:text-xl text-base">Footer</span>
+        </div>
+    </footer>
+    {{ dropzone.load_js() }}
+    {{ dropzone.config() }}
+</body>
+</html>

@@ -6,8 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PA Orbit:Mainpage</title>
-    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.7/dist/flowbite.min.css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.7/dist/flowbite.min.css" />
+
     <!-- <link rel="stylesheet" href="../css/style.css"> -->
 </head>
 
@@ -15,15 +16,12 @@
     <header class="m-0">
         <nav class="bg-[#112D4E] border-[#707070] px-2 py-2.5 dark:bg-gray-800 mb-20">
             <div class="container flex flex-wrap justify-between items-center">
-                <a href="index" class="flex items-center">
+                <a href="{{ url_for('index') }}" class="flex items-center">
                     <img src="/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Logo">
                     <span class="self-center text-xl font-semibold whitespace-nowrap text-white dark:text-white">Nama
                         Aplikasi</span>
                 </a>
                 <div class="flex md:order-2">
-                    <!-- <button type="button"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Get
-                        started</button> -->
                     <button data-collapse-toggle="mobile-menu-4" type="button"
                         class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                         aria-controls="mobile-menu-4" aria-expanded="false">
@@ -46,7 +44,7 @@
                         class="flex flex-col justify-between md:items-center mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium mr-40">
                         <!-- flex flex-wrap justify-center items-center mt-3 text-sm text-white dark:text-gray-400 sm:mt-0 -->
                         <li>
-                            <a href="index.html"
+                            <a href="{{ url_for('index') }}"
                                 class="block py-2 pr-4 pl-3 text-black bg-white rounded md:bg-transparent md:text-white md:p-0 dark:text-white"
                                 aria-current="page">Home</a>
                         </li>
@@ -86,7 +84,7 @@
                         </div>
                         <!-- </a> -->
                     </div>
-                    <div class="h-72 w-72 bg-[#DBE2EF] p-4 shadow-lg">
+                    <div class="h-72 w-72 bg-[#DBE2EF] border-[#707070] p-4 shadow-lg">
                         <div>
                             <!-- <a href="fitur2" class="cursor-pointer"> -->
                             <div class="flex w-full h-full text-center flex-col flex-auto md: mx-auto">
@@ -284,7 +282,8 @@
         </div>
     </section>
 
-    <footer class="bg-slate-700 shadow md:flex md:items-center justify-between p-4 dark:bg-gray-800 bottom-0">
+    <footer
+        class="bg-[#112D4E] border-[#707070] shadow md:flex md:items-center justify-between p-4 dark:bg-gray-800 bottom-0">
         <span class="text-sm justify-center items-center text-white sm:text-center dark:text-white">&#169; All Rights
             Reserved
             Copyright 2022</span>

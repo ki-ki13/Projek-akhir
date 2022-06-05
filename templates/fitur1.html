@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,24 +10,77 @@
     {{ dropzone.load_css() }}
     {{ dropzone.style('border: 2px dashed #0087F7;') }}
 </head>
-<body class="flex flex-col container min-h-screen w-full">
+
+<body class="flex flex-col min-h-screen w-full">
     <header class="flex-none">
-        <div class="container bg-slate-700 py-4 text-center">
-            <span class="md:text-xl text-base text-white">Navigasi</span>
-        </div>
+        <nav class="bg-white border-gray-200 px-2 py-2.5 rounded dark:bg-gray-800">
+            <div class="container flex flex-wrap justify-between items-center">
+                <a href="https://flowbite.com" class="flex items-center">
+                    <img src="/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Logo">
+                    <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Nama
+                        Aplikasi</span>
+                </a>
+                <div class="flex md:order-2">
+                    <button type="button"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Get
+                        started</button>
+                    <button data-collapse-toggle="mobile-menu-4" type="button"
+                        class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                        aria-controls="mobile-menu-4" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <svg class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1" id="mobile-menu-4">
+                    <ul class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
+                        <li>
+                            <a href="#"
+                                class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                                aria-current="page">Home</a>
+                        </li>
+                        <li>
+                            <a href="about_us"
+                                class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About
+                                Us</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
     <main class="flex flex-grow">
         <div class="flex flex-col md:flex-row container w-full">
-            <div class="invisible md:visible md:flex-1 md:bg-slate-500"> 
+            <div class="invisible md:visible md:flex-1 md:bg-slate-500">
                 <h2 class="text-lg text-white">Ilustrasi </h2>
             </div>
-            <div class="flex mb-4 md:m-auto flex-1 bg-white w-full h-full text-center">
-                <div class="w-full m-auto">
-                    <h2 class="text-2xl mb-4 md:mb-10">Judul</h2>
-                    <p class="text-2xl mb-4 md:mb-10">Unggah Gambar</p>
-                    <form class="w-3/4 m-auto" action="{{ url_for('upload_file') }}"  method="POST" enctype="multipart/form-data">
+            <div class="flex md:mx-auto flex-1 bg-white w-full h-full text-center">
+                <div class="w-full mx-auto">
+                    <h2 class="text-2xl mt-8">Pengenalan Tulisan Pada Gambar</h2>
+                    <h3>Silakan Upload Gambar Anda</h3>
+                    <form class="w-3/4 m-auto" action="{{ url_for('upload_file') }}" method="POST"
+                        enctype="multipart/form-data">
+                        <img class="scale-75 mx-auto" src="static/Asset/upload.png" alt="Cloud upload_file">
                         {{ dropzone.create() }}
-                        <input class="mt-4 p-4 bg-slate-700 text-white text-center" type="submit" id="submit" value="Upload">
+                        <input class="mt-4 p-4 bg-slate-700 text-white text-center mb-4" type="submit" id="submit"
+                            value="Upload">
                     </form>
                     <!-- <h1>Fitur 1</h1> -->
                     <!-- <a href="{{ url_for('index') }}">Back</a> -->
@@ -34,13 +88,28 @@
             </div>
         </div>
     </main>
-    
-    <footer class="flex-none">
-        <div class="container bg-white py-4 text-center bottom-0">
-            <span class="md:text-xl text-base">Footer</span>
-        </div>
+
+    <footer class="bg-white rounded-lg shadow md:flex md:items-center justify-between p-4 dark:bg-gray-800">
+        <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 <a href="https://flowbite.com"
+                class="hover:underline">Flowbite™</a>. All Rights Reserved.
+        </span>
+        <ul class="flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
+            <li>
+                <a href="#" class="mr-4 hover:underline">About</a>
+            </li>
+            <li>
+                <a href="#" class="mr-4 hover:underline">Privacy Policy</a>
+            </li>
+            <li>
+                <a href="#" class="mr-4 hover:underline">Licensing</a>
+            </li>
+            <li>
+                <a href="#" class="hover:underline">Contact</a>
+            </li>
+        </ul>
     </footer>
     {{ dropzone.load_js() }}
     {{ dropzone.config() }}
 </body>
+
 </html>

@@ -22,15 +22,23 @@ app.config.update(
 
 dropzone = Dropzone(app)
 
+
 @app.route("/")
 def index():
     return render_template("index.html")
+
+
+@app.route('/index')
+def index2():
+    return render_template("index.html")
+
 
 @app.route("/fitur1")
 def fitur1():
     return render_template("fitur1.html")
 
-@app.route("/", methods=['GET', 'POST'])    
+
+@app.route("/", methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
         for key, f in request.files.items():
@@ -44,6 +52,12 @@ def upload_file():
 @app.route("/fitur2")
 def fitur2():
     return render_template("fitur2.html")
+
+
+@app.route("/about_us")
+def method_name():
+    return render_template("about_us.html")
+
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)

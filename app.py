@@ -50,16 +50,16 @@ def upload_file():
     for key, f in request.files.items():
         if key.startswith('file'):
             f.save(os.path.join(app.config['UPLOADED_PATH'], f.filename))
-        photo = os.path.join(app.config['UPLOADED_PATH'], f.filename)
-        photo = readImage(photo)
-        lis = hasil
-        lis.append(photo)
-        hasil = lis
+        # photo = os.path.join(app.config['UPLOADED_PATH'], f.filename)
+        # photo = readImage(photo)
+        # lis = hasil
+        # lis.append(photo)
+        # hasil = lis
         # print(photo, "-", hasil)
         # photo = helper.imageToStringEasyOcr(photo,'en')
         # print(key,photo)
         # hasil.append(photo)
-    return photo
+    return ""
     # return render_template("fitur12.html", hasil = photo, foobar = lang.LANGUAGES)
 
 

@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitur 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .dropdown:hover .dropdown-menu {
             display: block;
         }
     </style>
-    <title>Fitur 2</title>
 </head>
 
 <body class="flex flex-col min-h-screen w-full font-mono">
@@ -18,9 +19,9 @@
         <nav class="bg-[#112D4E] border-[#707070] px-2 py-2.5 dark:bg-gray-800 mb-20">
             <div class="container flex flex-wrap justify-between items-center">
                 <a href="{{ url_for('index') }}" class="flex items-center ml-10">
-                    <img src="/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Logo">
-                    <span class="self-center text-xl font-semibold whitespace-nowrap text-white dark:text-white">Nama
-                        Aplikasi</span>
+                    <img src="static/Asset/GOOCR.png" class="mr-3 h-6 sm:h-9" alt="Logo">
+                    <span
+                        class="self-center text-xl font-semibold whitespace-nowrap text-white dark:text-white">GOOCR</span>
                 </a>
                 <div class="flex md:order-1">
                     <button data-collapse-toggle="mobile-menu-4" type="button"
@@ -62,21 +63,11 @@
     </header>
     <main class="flex flex-grow">
         <div class="flex flex-col md:flex-row container w-full">
-            <div class="flex flex-1 w-full h-full">
-                <div class="w-3/4 m-auto">
-                    <h2 class="text-lg">Hasil </h2>
-                    <!-- enakan pake textarea tapi disable trus pake js bisa dicopas -->
-                    <div class=" bg-slate-700 w-full h-72 text-center">
-                        <h2 class="text-lg text-white">Ilustrasi </h2>
-
-                    </div>
-                </div>
-            </div>
             <div class="flex mb-4 md:m-auto flex-1 bg-white w-full h-full">
                 <div class="w-3/4 m-auto">
                     <div class="dropdown inline-block relative">
                         <button
-                            class="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
+                            class="bg-[#3F72AF] text-white font-semibold py-2 px-4 rounded inline-flex items-center">
                             <span class="mr-1">Pilih Bahasa</span>
                             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                 <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
@@ -94,11 +85,30 @@
                         </ul>
                     </div>
                     <!-- enakan pake textarea tapi disable trus pake js bisa dicopas -->
-                    <div class="w-full bg-slate-700 h-72 text-center">
-                        <h2 class="text-lg text-white">Ilustrasi </h2>
+                    <div class="w-full bg-[#DBE2EF] border-[#707070] h-72 text-center">
+
                     </div>
                 </div>
             </div>
+
+            <div class="flex flex-1 w-full h-full">
+                <div class="w-3/4 m-auto">
+                    <h2
+                        class="text-lg font-semibold mx-auto bg-[#3F72AF] text-white py-1 px-4 rounded inline-flex items-center">
+                        Hasil</h2>
+                    <!-- enakan pake textarea tapi disable trus pake js bisa dicopas -->
+                    <div class=" bg-[#DBE2EF] border-[#707070] w-full h-72 p-4 text-center">
+                        <div><img class="w-1/3 md:shrink-0 mx-auto" src="static/Asset/success.png" alt="success">
+                        </div>
+                        <h2 class="text-lg text-black font-bold">Succesfull</h2>
+                        <p class="text-sm text-black mb-8">The Images have been converted to PDF</p>
+                        <a href="fitur2"
+                            class="text-base font-semibold mx-auto text-white bg-[#3F72AF] w-40 h-12 py-3 px-8 rounded hover:shadow-lg hover:opacity-80 transition duration-300 ease-in-out">Download
+                            File</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </main>
 
@@ -127,7 +137,6 @@
 
         </ul>
     </footer>
-    <a href="{{ url_for('index') }}">Back</a>
     <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
 </body>
 

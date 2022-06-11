@@ -230,3 +230,7 @@ LANGUAGES_EASYOCR_ASAL = {
     'vi': 'vietnamese',
     'cy': 'welsh'
 }
+
+LANGUAGES_TRANSLATE_TUJUAN_REVERSE = {key:value for (value, key) in LANGUAGES_TRANSLATE_TUJUAN.items()}
+LANGUAGES_TRANSLATE_ASAL_REVERSE = {key:value for (value, key) in LANGUAGES_TRANSLATE_ASAL.items()}
+LANGUAGES_EASYOCR_ASAL_REVERSE = {key:value for (value, key) in LANGUAGES_EASYOCR_ASAL.items()}

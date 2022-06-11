@@ -5,6 +5,7 @@ from flask_dropzone import Dropzone
 import lang
 import cv2
 import helper
+import easyocr
 listFormat, error = helper.formatAndError()
 basedir = os.path.abspath(os.path.dirname(__file__))
 dirFull = f'{basedir}\\static\\upload'
@@ -19,11 +20,6 @@ app.config.update(
 )
 
 dropzone = Dropzone(app)
-
-def readImage(path):
-    imgori = cv2.imread(path)
-    img = cv2.cvtColor(imgori, cv2.COLOR_BGR2RGB)
-    return img
 
 @app.route("/")
 def index():
@@ -48,8 +44,14 @@ def fitur1():
 def hasil():
     listFile = []
     listPath = []
+    kalimatAsal, kalimatTujuan = [], []
     asal = request.form["asal"]
+    # tujuan = request.form["tujuan"]
     print(asal)
+    asalOcr = lang.LANGUAGES_EASYOCR_ASAL_REVERSE[asal]
+    asalTrans = lang.LANGUAGES_TRANSLATE_ASAL_REVERSE[asal]
+    tujuanTrans = lang.LANGUAGES_TRANSLATE_TUJUAN_REVERSE['indonesian']
+    reader = easyocr.Reader([asalOcr])
     fileNames = os.listdir(dirFull)
     for i in fileNames:
         listPath.append(os.path.abspath(os.path.join(dirFull, i)))
@@ -59,8 +61,34 @@ def hasil():
     pesanError = helper.cekError(error, err)
     print(pesanError)
     if pesanError != None:
+        for i in listPath:
+            os.unlink(i)
+            print(i)
         return (redirect(url_for('fitur1', pesan = pesanError)))
-    return asal
+    
+    if baseFile == 'gambar':
+        for i in listPath:
+            img = helper.readImage(i)
+            teks = helper.imageToStringEasyOcr(img, reader)
+
+            for i in teks:
+                kalimatAsal.append(i)
+                i = helper.translate(i, asalTrans, tujuanTrans)
+                kalimatTujuan.append(i)
+    elif baseFile == 'pdf':
+        listImage = helper.pdfToImage(listPath[0])
+        for i in listImage:
+            img = helper.readImage(i)
+            teks = helper.imageToStringEasyOcr(img, reader)
+
+            for i in teks:
+                kalimatAsal.append(i)
+                i = helper.translate(i, asalTrans, tujuanTrans)
+                kalimatTujuan.append(i)
+    for i in listPath:
+        os.unlink(i)
+        print(i)
+    return render_template("hasilfitur1.html", asal = kalimatAsal, panjangAsal = len(kalimatAsal), tujuan = kalimatTujuan, panjangTujuan = len(kalimatTujuan))
 
 
 @app.route("/fitur2")

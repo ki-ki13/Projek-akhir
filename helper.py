@@ -86,12 +86,11 @@ def translate(text, asal, tujuan):
   return translate_text.text
 
 #Easy OCR
-def imageToStringEasyOcr(img, asal):
-  reader = easyocr.Reader([asal])
-  teks = reader.readtext(img, detail=0, paragraph = True)
+def imageToStringEasyOcr(img, reader):
+  teks = reader.readtext(img, paragraph = True)
   tulisan = []
   for i in teks:
-    tulisan.append(i)
+    tulisan.append(i[1])
   return tulisan
 
 def get_optimal_font_scale(text, width):

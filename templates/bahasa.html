@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitur 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+    </style>
+</head>
+<body class="flex flex-col container min-h-screen w-full">
+    <header class="flex-none">
+        <div class="container bg-slate-700 py-4 text-center">
+            <span class="md:text-xl text-base text-white">Navigasi</span>
+        </div>
+    </header>
+    <main class="flex flex-grow">
+        <form class="w-full m-auto" method="POST" action="/inputbahasa">
+            <div class="flex flex-col w-3/4 m-auto p-20 bg-slate-700 rounded-md">
+                <div class="flex flex-col md:flex-row">
+                <div class="w-full m-auto w-full m-auto text-center">
+                    <h2 class="m-4 text-white text-lg">Asal Bahasa</h2>
+                    <select class="dropdown inline-block p-4 relative" name="asal">
+                        <button class="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
+                          <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
+                        </button>
+                        <ul class="dropdown-menu absolute hidden text-gray-700 pt-1">
+                          {% for key, value in foobar.items() %}
+                          <option value ="{{ value }}" class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">{{ value }}</option>
+                            {% endfor %}
+                        </ul>
+                    </select>
+                </div>
+                <div class="w-full m-auto w-full m-auto text-center">
+                    <h2 class="m-4 text-white text-lg">Tujuan Bahasa</h2>
+                    <select class="dropdown inline-block p-4 relative" name="tujuan">
+                        <button class="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
+                          <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
+                        </button>
+                        <ul class="dropdown-menu absolute hidden text-gray-700 pt-1">
+                          {% for key, value in foobar.items() %}
+                          <option value ="{{ value }}" class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">{{ value }}</option>
+                            {% endfor %}
+                        </ul>
+                    </select>
+                </div>
+                </div>
+                <input class="mx-auto my-10 w-44 p-4 bg-gray-300 text-center cursor-pointer rounded-md" type="submit" id="submit" value="Lanjutkan">
+            </div>
+            
+        </form>
+        
+    </main>
+    <footer class="flex-none">
+        <div class="container bg-white py-4 text-center bottom-0">
+            <span class="md:text-xl text-base">Footer</span>
+        </div>
+    </footer>
+</body>

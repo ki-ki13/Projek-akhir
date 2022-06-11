@@ -40,15 +40,27 @@ def index():
 def fitur1():
     return render_template("fitur1.html")
 
-@app.route("/", methods=['GET', 'POST'])    
+@app.route("/fitur1/hasil", methods=['POST'])   
 def upload_file():
-    if request.method == 'POST':
-        for key, f in request.files.items():
-            if key.startswith('file'):
-                f.save(os.path.join(app.config['UPLOADED_PATH'], f.filename))
-    else:
-        print('gagal')
-    return render_template("fitur12.html")
+    # asal = request.form.get('asal')
+    # asal = lang.cek(asal)
+    hasil = []
+    # photo = ""
+    # print("Hemmmmm")
+    for key, f in request.files.items():
+        if key.startswith('file'):
+            f.save(os.path.join(app.config['UPLOADED_PATH'], f.filename))
+        photo = os.path.join(app.config['UPLOADED_PATH'], f.filename)
+        photo = readImage(photo)
+        lis = hasil
+        lis.append(photo)
+        hasil = lis
+        # print(photo, "-", hasil)
+        # photo = helper.imageToStringEasyOcr(photo,'en')
+        # print(key,photo)
+        # hasil.append(photo)
+    return photo
+    # return render_template("fitur12.html", hasil = photo, foobar = lang.LANGUAGES)
 
 
 @app.route("/fiturs")

@@ -20,9 +20,10 @@ app.config.update(
     DROPZONE_ALLOWED_FILE_TYPE='image',
     DROPZONE_MAX_FILE_SIZE=10,
     DROPZONE_MAX_FILES=30,
-    DROPZONE_IN_FORM=True,
+    DROPZONE_ALLOWED_FILE_CUSTOM = True,
+    # DROPZONE_IN_FORM=True,
     DROPZONE_UPLOAD_ON_CLICK=True,
-    DROPZONE_UPLOAD_ACTION='upload_file',  # URL or endpoint
+    DROPZONE_UPLOAD_ACTION='fitur1',  # URL or endpoint
     DROPZONE_UPLOAD_BTN_ID='submit',
 )
 
@@ -36,20 +37,23 @@ Session(app)
 def index():
     return render_template("index.html")
 
-@app.route("/fitur1")
+@app.route("/fitur1",methods=['GET','POST'])
 def fitur1():
-    return render_template("fitur1.html")
+    if request.method == 'POST':
+        f = request.files.get('file')
+        f.save(os.path.join(app.config['UPLOADED_PATH'],f.filename))
+    pesanError = request.args.get('pesan')
+    return render_template('fitur1.html', foobar=lang.LANGUAGES, pesan=pesanError)
 
 @app.route("/fitur1/hasil", methods=['POST'])   
 def upload_file():
-    # asal = request.form.get('asal')
-    # asal = lang.cek(asal)
+    asal0 = request.form.get('asal')
+    tujuan = request.form.get('tujuan')
+    asal2 = request.form.get('asal2')
+    asal = lang.cek(asal2)
     hasil = []
     # photo = ""
-    # print("Hemmmmm")
-    for key, f in request.files.items():
-        if key.startswith('file'):
-            f.save(os.path.join(app.config['UPLOADED_PATH'], f.filename))
+    print(asal,tujuan)
         # photo = os.path.join(app.config['UPLOADED_PATH'], f.filename)
         # photo = readImage(photo)
         # lis = hasil
@@ -59,11 +63,10 @@ def upload_file():
         # photo = helper.imageToStringEasyOcr(photo,'en')
         # print(key,photo)
         # hasil.append(photo)
-    return ""
-    # return render_template("fitur12.html", hasil = photo, foobar = lang.LANGUAGES)
+    return render_template("fitur12.html", foobar = lang.LANGUAGES, asal= asal0,tujuan=tujuan)
 
 
-@app.route("/fiturs")
+@app.route("/fitur2")
 def fitur2():
     return render_template("bahasa.html", foobar=lang.LANGUAGES)
 

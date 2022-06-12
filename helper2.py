@@ -23,8 +23,8 @@ def js_to_image(js_reply):
 def inputBahasa(asal,tujuan):
     asal = lang.cek(asal)
     tujuan = lang.cek(tujuan)
-    reader = easyocr.Reader([asal])
-    return reader, asal, tujuan
+    # reader = easyocr.Reader([asal])
+    return asal, tujuan
 
 def formatAndError():
     listFormat = ['jpg', 'png', 'jpeg', 'pdf']

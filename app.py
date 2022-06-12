@@ -44,7 +44,7 @@ def fitur1():
 def hasil():
     listFile = []
     listPath = []
-    kalimatAsal, kalimatTujuan = [], []
+    dictAsal, dictTujuan = {},{}
     asal = request.form["asal"]
     # tujuan = request.form["tujuan"]
     print(asal)
@@ -67,28 +67,42 @@ def hasil():
         return (redirect(url_for('fitur1', pesan = pesanError)))
     
     if baseFile == 'gambar':
+        urutan = 0
         for i in listPath:
+            kalimatAsal, kalimatTujuan = [], []
             img = helper.readImage(i)
             teks = helper.imageToStringEasyOcr(img, reader)
+            urutan += 1
 
             for i in teks:
                 kalimatAsal.append(i)
                 i = helper.translate(i, asalTrans, tujuanTrans)
                 kalimatTujuan.append(i)
+            dictAsal[urutan] = kalimatAsal
+            dictTujuan[urutan] = kalimatTujuan
     elif baseFile == 'pdf':
         listImage = helper.pdfToImage(listPath[0])
+        urutan = 0
+        print('Menjalankan loop')
         for i in listImage:
+            print(f'Proses gambar ke-{urutan+1}')
+            kalimatAsal, kalimatTujuan = [], []
             img = helper.readImage(i)
             teks = helper.imageToStringEasyOcr(img, reader)
+            urutan += 1
 
             for i in teks:
                 kalimatAsal.append(i)
                 i = helper.translate(i, asalTrans, tujuanTrans)
                 kalimatTujuan.append(i)
+            dictAsal[urutan] = kalimatAsal
+            dictTujuan[urutan] = kalimatTujuan
+            print(f'Gambar ke-{urutan} selesai')
+        for i in listImage:
+            os.unlink(i)
     for i in listPath:
         os.unlink(i)
-        print(i)
-    return render_template("hasilfitur1.html", asal = kalimatAsal, panjangAsal = len(kalimatAsal), tujuan = kalimatTujuan, panjangTujuan = len(kalimatTujuan))
+    return render_template("hasilfitur1.html", asal = dictAsal, tujuan = dictTujuan, basefile = baseFile)
 
 
 @app.route("/fitur2")

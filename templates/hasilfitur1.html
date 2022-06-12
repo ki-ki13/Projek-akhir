@@ -1,9 +1,27 @@
+{% if basefile == 'gambar' %}
 <h1>Bahasa Asal Adalah</h1>
-{% for i in range(panjangAsal) %}
-<h3>{{asal[i]}}</h3>
-{% endfor %}
+{% for key,value in asal.items() %}
+<h2>Gambar ke-{{key}}</h2>
+{% for i in value %}
+<h3>{{i}}</h3>
+{% endfor %} {% endfor %}
 <br />
-<h1>Bhasa Tujuan Adalah</h1>
-{% for i in range(panjangTujuan) %}
-<h3>{{tujuan[i]}}</h3>
-{% endfor %}
+<h1>Bahasa Tujuan Adalah</h1>
+{% for key,value in tujuan.items() %}
+<h2>Gambar ke-{{key}}</h2>
+{% for i in value %}
+<h3>{{i}}</h3>
+{% endfor %} {% endfor %} {% elif basefile == 'pdf' %}
+<h1>Bahasa Asal Adalah</h1>
+{% for key,value in asal.items() %}
+<h2>Halaman ke-{{key}}</h2>
+{% for i in value %}
+<h3>{{i}}</h3>
+{% endfor %} {% endfor %}
+<br />
+<h1>Bahasa Tujuan Adalah</h1>
+{% for key,value in tujuan.items() %}
+<h2>Halaman ke-{{key}}</h2>
+{% for i in value %}
+<h3>{{i}}</h3>
+{% endfor %} {% endfor %} {% endif %}

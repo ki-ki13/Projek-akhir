@@ -1,12 +1,16 @@
 import cv2
 import numpy as np
 import sys
+import os
 import easyocr
 
 from googletrans import Translator
 from fpdf import FPDF
 from pdf2image import convert_from_path
 from PyPDF2 import PdfFileMerger
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+UPLOADED_PATH_SEMENTARA=os.path.join(basedir, 'static\\sementara')
 
 #Mengecek format
 
@@ -56,8 +60,10 @@ def pdfToImage(path):
   img = convert_from_path(path)
   listImage = []
   for i in range(len(img)):
-    img[i].save('page'+ str(i) +'.jpg', 'JPEG')
-    listImage.append('page'+ str(i) +'.jpg')
+    img[i].save(os.path.join(UPLOADED_PATH_SEMENTARA,'page'+ str(i) +'.jpg'))
+    print(os.path.join(UPLOADED_PATH_SEMENTARA,'page'+ str(i) +'.jpg'))
+    # img[i].save('page'+ str(i) +'.jpg', 'JPEG')
+    listImage.append(os.path.join(UPLOADED_PATH_SEMENTARA,'page'+ str(i) +'.jpg'))
   return listImage
 
 

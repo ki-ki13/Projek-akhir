@@ -1,4 +1,4 @@
-from flask import Flask, flash, redirect, render_template, request, jsonify, url_for
+from flask import Flask, flash, redirect, render_template, request, jsonify, url_for, send_file
 import numpy as np
 import os
 from flask_dropzone import Dropzone
@@ -6,9 +6,13 @@ import lang
 import cv2
 import helper
 import easyocr
+from PyPDF2 import PdfFileMerger
+
 listFormat, error = helper.formatAndError()
 basedir = os.path.abspath(os.path.dirname(__file__))
 dirFull = f'{basedir}\\static\\upload'
+dirFullSementara = f'{basedir}\\static\\sementara'
+pathHasilPdf=os.path.join(basedir, 'static\\hasilPDF')
 app = Flask(__name__)
 
 
@@ -23,34 +27,47 @@ dropzone = Dropzone(app)
 
 @app.route("/")
 def index():
+    fileHasilPDF = os.listdir(pathHasilPdf)
+    for i in fileHasilPDF:
+        os.unlink(os.path.abspath(os.path.join(pathHasilPdf, i)))
     return render_template("index.html")
 
 
-@app.route("/fitur1", methods=['GET','POST'])
+@app.route("/fitur1")
 def fitur1():
+    return render_template('fitur1.html')
+
+@app.route("/fitur1text", methods=['GET','POST'])
+def fitur1text():
     if request.method == 'POST':
         f = request.files.get('file')
         f.save(os.path.join(app.config['UPLOADED_PATH'],f.filename))
     pesanError = request.args.get('pesan')
-    return render_template('fitur1.html', foobar=lang.LANGUAGES_EASYOCR_ASAL, pesan=pesanError)
+    return render_template('fitur1text.html', foobar=lang.LANGUAGES_EASYOCR_ASAL, foobartujuan = lang.LANGUAGES_TRANSLATE_TUJUAN, pesan=pesanError)
 
-
+@app.route("/fitur1pdf", methods=['GET','POST'])
+def fitur1pdf():
+    if request.method == 'POST':
+        f = request.files.get('file')
+        f.save(os.path.join(app.config['UPLOADED_PATH'],f.filename))
+    pesanError = request.args.get('pesan')
+    return render_template('fitur1pdf.html', pesan=pesanError)
 # @app.route("/fitur1/proses", methods=['POST'])   
 # def upload_file():
 #     f = request.files.get('file')
 #     print(f,f.filename)
 
-@app.route("/fitur1/hasil", methods=['POST'])
-def hasil():
+@app.route("/fitur1/hasiltext", methods=['POST'])
+def hasiltext():
     listFile = []
     listPath = []
     dictAsal, dictTujuan = {},{}
     asal = request.form["asal"]
-    # tujuan = request.form["tujuan"]
-    print(asal)
+    tujuan = request.form["tujuan"]
+    print(f'Asal bahasa {asal} -> {tujuan}')
     asalOcr = lang.LANGUAGES_EASYOCR_ASAL_REVERSE[asal]
     asalTrans = lang.LANGUAGES_TRANSLATE_ASAL_REVERSE[asal]
-    tujuanTrans = lang.LANGUAGES_TRANSLATE_TUJUAN_REVERSE['indonesian']
+    tujuanTrans = lang.LANGUAGES_TRANSLATE_TUJUAN_REVERSE[tujuan]
     reader = easyocr.Reader([asalOcr])
     fileNames = os.listdir(dirFull)
     for i in fileNames:
@@ -63,8 +80,7 @@ def hasil():
     if pesanError != None:
         for i in listPath:
             os.unlink(i)
-            print(i)
-        return (redirect(url_for('fitur1', pesan = pesanError)))
+        return (redirect(url_for('fitur1text', pesan = pesanError)))
     
     if baseFile == 'gambar':
         urutan = 0
@@ -102,7 +118,76 @@ def hasil():
             os.unlink(i)
     for i in listPath:
         os.unlink(i)
-    return render_template("hasilfitur1.html", asal = dictAsal, tujuan = dictTujuan, basefile = baseFile)
+    return render_template("hasilfitur1text.html", asal = dictAsal, tujuan = dictTujuan, basefile = baseFile)
+
+@app.route("/fitur1/hasilpdf", methods=['POST'])
+def hasilpdf():
+    fileHasilPDF = os.listdir(pathHasilPdf)
+    for i in fileHasilPDF:
+        os.unlink(os.path.abspath(os.path.join(pathHasilPdf, i)))
+    
+    merger = PdfFileMerger()
+    nilai = 0
+    listFile = []
+    listPath = []
+    fileNames = os.listdir(dirFull)
+    for i in fileNames:
+        listPath.append(os.path.abspath(os.path.join(dirFull, i)))
+        listFile.append(i)
+    err, baseFile, inputFile = helper.cekFormat(listFormat, listFile)
+    print(err, baseFile, inputFile)
+    pesanError = helper.cekError(error, err)
+    print(pesanError)
+    if pesanError != None:
+        for i in listPath:
+            os.unlink(i)
+        return (redirect(url_for('fitur1pdf', pesan = pesanError)))
+    
+    if baseFile == 'gambar':
+        for i in listPath:
+            img = helper.readImage(i)
+            merger = helper.saveAndMergePdf(img, nilai, merger)
+            nilai += 1
+        merger.write(os.path.join(pathHasilPdf,'HasilPDFbaru.pdf'))
+        merger.close()
+
+        fileNamesPDF = os.listdir(dirFullSementara)
+        for i in fileNamesPDF:
+            os.unlink(os.path.abspath(os.path.join(dirFullSementara, i)))
+
+        filePDF = os.listdir(pathHasilPdf)
+        for i in filePDF:
+            path = os.path.abspath(os.path.join(pathHasilPdf, i))
+        print(path)
+    
+    else:
+        listImage = helper.pdfToImage(listPath[0])
+        print('Menjalankan loop')
+        for i in listImage:
+            img = helper.readImage(i)
+            merger = helper.saveAndMergePdf(img, nilai, merger)
+            nilai += 1
+        merger.write(os.path.join(pathHasilPdf,'HasilPDFbaru.pdf'))
+        merger.close()
+        for i in listImage:
+            os.unlink(i)
+        fileNamesPDF = os.listdir(dirFullSementara)
+        for i in fileNamesPDF:
+            os.unlink(os.path.abspath(os.path.join(dirFullSementara, i)))
+
+        filePDF = os.listdir(pathHasilPdf)
+        for i in filePDF:
+            path = os.path.abspath(os.path.join(pathHasilPdf, i))
+        print(path)
+
+    for i in listPath:
+        os.unlink(i)
+    return render_template("hasilfitur1pdf.html")
+
+@app.route("/download")
+def save_file():
+    path = os.path.abspath(os.path.join(pathHasilPdf, "HasilPDFbaru.pdf"))
+    return send_file(path ,as_attachment=True, cache_timeout=0)
 
 
 @app.route("/fitur2")

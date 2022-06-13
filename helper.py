@@ -8,6 +8,7 @@ from googletrans import Translator
 from fpdf import FPDF
 from pdf2image import convert_from_path
 from PyPDF2 import PdfFileMerger
+import pytesseract
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 UPLOADED_PATH_SEMENTARA=os.path.join(basedir, 'static\\sementara')
@@ -56,6 +57,14 @@ def readImage(path):
     img = cv2.cvtColor(imgori, cv2.COLOR_BGR2RGB)
     return img
 
+def saveAndMergePdf(img, nilai, merger):
+    pdf = pytesseract.image_to_pdf_or_hocr(img, extension='pdf')
+    with open(os.path.join(UPLOADED_PATH_SEMENTARA, f'pdf{nilai}.pdf'), 'w+b') as f:
+      f.write(pdf)
+    print(os.path.join(UPLOADED_PATH_SEMENTARA, f'pdf{nilai}.pdf'))
+    merger.append(os.path.join(UPLOADED_PATH_SEMENTARA, f'pdf{nilai}.pdf'))
+    return merger
+
 def pdfToImage(path):
   img = convert_from_path(path)
   listImage = []
@@ -65,23 +74,6 @@ def pdfToImage(path):
     # img[i].save('page'+ str(i) +'.jpg', 'JPEG')
     listImage.append(os.path.join(UPLOADED_PATH_SEMENTARA,'page'+ str(i) +'.jpg'))
   return listImage
-
-
-def stringToPdf(teks, nilai, merger, tujuan=None, asal=None):
-  pdf = FPDF() 
-  pdf.add_page()
-  # set style and size of font 
-  # that you want in the pdf\
-  pdf.set_font("Times", size = 12)
-  for a in teks:
-    a = str(a).replace('—', '')
-    if asal != None or tujuan != None:
-      a = translate(a, asal, tujuan)
-    pdf.cell(200,5,txt=a,ln=True) 
-  # save the pdf with name .pdf
-  pdf.output(f"pdf{nilai}.pdf")
-  merger.append(f"pdf{nilai}.pdf")
-  return merger
 
 def translate(text, asal, tujuan):
   translator = Translator()

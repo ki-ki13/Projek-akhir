@@ -1,4 +1,4 @@
-from flask import Flask, render_template,send_file, request, session,redirect,url_for
+from flask import Flask, render_template,send_file, request, session,redirect,url_for,jsonify
 from flask_session import Session
 import numpy as np
 from fpdf import FPDF
@@ -7,6 +7,7 @@ import os
 import helper2
 import lang
 import easyocr
+from PIL import Image
 from flask_dropzone import Dropzone
 from base64 import b64decode
 
@@ -17,9 +18,12 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 dirFull = f'{basedir}\\static\\upload'
 dircam = f'{basedir}\\static\\cam'
 global imgl
+global t_teks
+global deteksi, probab
 
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
+
 
 
 app.config.update(
@@ -138,8 +142,11 @@ def inputbahasa():
 
 @app.route('/submit',methods=['GET','POST'])
 def submit():
-    asal = session['asal']
-    tujuan = session['tujuan']
+    asal = request.args.get('asal')
+    tujuan = request.args.get('tujuan')
+    asal, tujuan = helper2.inputBahasa(asal,tujuan)
+    # asal = session['asal']
+    # tujuan = session['tujuan']
     reader = easyocr.Reader([asal])
     image = request.args.get('image')
     s = image.split(',')[1]
@@ -170,10 +177,43 @@ def submit():
         imgl = cv2.rectangle(imgl, tl, br, (0, 255, 0), 2)
         imgl = cv2.putText(imgl, text, (tl[0], tl[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, helper2.get_optimal_font_scale(text, br[0] - tl[0]), (255, 0, 0), 2)
     print(type(imgl))
+    t_teks = ""
+    deteksi = ""
+    probab = ""
+    if len(result) > 1:
+        for (a, b, c) in result:
+            t_teks = t_teks + " " + helper2.translate(b, asal, tujuan)
+            deteksi = deteksi + " " + b
+            probab = probab + " " + str(c)
+            print(f'Kata yang terdeteksi adalah {b} -> {t_teks}, dengan probabilitas {c}')
+        print(deteksi)
+        print(probab)
+    else:
+        t_teks = helper2.translate(result[0][1], asal, tujuan)
+        deteksi = result[0][1]
+        probab = str(result[0][2])
+        print(f'Kata yang terdeteksi adalah {result[0][1]} -> {t_teks}, dengan probabilitas {result[0][2]}')
+    # img = Image.fromarray(arr.astype('uint8'))
+    # file_object = io.BytesIO()   # create file in memory 
+    # img.save(file_object, 'PNG') # save PNG in file in memory
+    # file_object.seek(0)
     photodir = os.path.join(dircam,'photo.jpeg')
     cv2.imwrite(photodir, imgl)
     # print(result)
-    return ""
+    return jsonify({'redirect': url_for("display", teks = t_teks, deteksi=deteksi,probab=probab )})
+
+
+@app.route('/display/<teks>/<deteksi>/<probab>',methods=['GET'])
+def display(teks, deteksi,probab ):
+    trans = teks
+    hasil_deteksi = deteksi.strip().split(" ")
+    hasil_trans = trans.strip().split(" ")
+    probab = probab.strip().split(" ")
+    len_hasil = len(hasil_deteksi)
+    
+    return render_template('fitur2.html', trans = trans, hasil_deteksi=hasil_deteksi,len_hasil = len_hasil, hasil_trans = hasil_trans, probab = probab)
+
+
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)

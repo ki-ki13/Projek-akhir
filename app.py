@@ -109,7 +109,7 @@ def upload_file():
 
 @app.route('/download', methods=['POST'])
 def save_file():
-    texts = request.form.getlist("hasilteks[]")
+    texts = request.form.getlist("hasilter[]")
     texts = "\n".join(texts)
     # print(texts)
     # for text in texts.split("\n"):

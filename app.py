@@ -1,8 +1,7 @@
-from csv import reader
-from flask import Flask, render_template, request, session,redirect,url_for
+from flask import Flask, render_template,send_file, request, session,redirect,url_for
 from flask_session import Session
-import joblib
 import numpy as np
+from fpdf import FPDF
 import cv2
 import os
 import helper2
@@ -15,8 +14,8 @@ app = Flask(__name__)
 
 listFormat, error = helper2.formatAndError()
 basedir = os.path.abspath(os.path.dirname(__file__))
-dirFull = f'{basedir}\\upload'
-dircam = f'{basedir}\\cam'
+dirFull = f'{basedir}\\static\\upload'
+dircam = f'{basedir}\\static\\cam'
 global imgl
 
 app.config["SESSION_PERMANENT"] = False
@@ -24,7 +23,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 
 
 app.config.update(
-    UPLOADED_PATH=os.path.join(basedir, 'upload'),
+    UPLOADED_PATH=os.path.join(basedir, 'static\\upload'),
     DROPZONE_MAX_FILE_SIZE=1024,
     DROPZONE_ALLOWED_FILE_CUSTOM = True,
     DROPZONE_ALLOWED_FILE_TYPE = 'image/*, .pdf'
@@ -34,11 +33,10 @@ Session(app)
 dropzone = Dropzone(app)
 
 
-
-
 @app.route("/")
 def index():
     return render_template("index.html")
+
 
 @app.route("/fitur1",methods=['GET','POST'])
 def fitur1():
@@ -48,10 +46,12 @@ def fitur1():
     pesanError = request.args.get('pesan')
     return render_template('fitur1.html', foobar=lang.LANGUAGES, pesan=pesanError)
 
+
 @app.route("/fitur1/hasil", methods=['POST'])   
 def upload_file():
     listFile = []
     listPath = []
+    dictAsal, dictTujuan = {},{}
     kalimatAsal, kalimatTujuan = [], []
     asal = request.form.get('asal')
     tujuan = request.form.get('tujuan')
@@ -71,29 +71,59 @@ def upload_file():
             print(i)
         return (redirect(url_for('fitur1', pesan = pesanError)))
     if baseFile == 'gambar':
+        urutan = 0
         for i in listPath:
+            kalimatAsal, kalimatTujuan = [], []
             img = helper2.readImage(i)
             teks = helper2.imageToStringEasyOcr(img, reader)
+            urutan += 1
 
             for j in teks:
                 kalimatAsal.append(j)
                 j = helper2.translate(j, asal, tujuan)
                 kalimatTujuan.append(j)
+            dictAsal[urutan] = kalimatAsal
+            dictTujuan[urutan] = kalimatTujuan
+
     elif baseFile == 'pdf':
         listImage = helper2.pdfToImage(listPath[0])
+        urutan = 0
         for i in listImage:
+            print(f'Proses gambar ke-{urutan+1}')
+            kalimatAsal, kalimatTujuan = [], []
             img = helper2.readImage(i)
             teks = helper2.imageToStringEasyOcr(img, reader)
+            urutan += 1
 
             for i in teks:
                 kalimatAsal.append(i)
                 i = helper2.translate(i, asal, tujuan)
                 kalimatTujuan.append(i)
+            dictAsal[urutan] = kalimatAsal
+            dictTujuan[urutan] = kalimatTujuan
     for i in listPath:
         os.unlink(i)
         print(i)
+    return render_template("fitur12.html",  asal = dictAsal, tujuan = dictTujuan, basefile = baseFile)
 
-    return render_template("fitur12.html",  asal = kalimatAsal, panjangAsal = len(kalimatAsal), tujuan = kalimatTujuan, panjangTujuan = len(teks_tujuan))
+
+@app.route('/download', methods=['POST'])
+def save_file():
+    texts = request.form.getlist("hasilteks[]")
+    texts = "\n".join(texts)
+    # print(texts)
+    # for text in texts.split("\n"):
+    #     print(text)
+    pdf = FPDF('P', 'cm', 'A4')
+    pdf.set_margins(3, 3, 3)
+    pdf.alias_nb_pages()
+    pdf.add_page()
+    pdf.set_font('Times', '', 12)
+    for text in texts.split("\n"):
+        pdf.multi_cell(0, 1.15, text.encode('utf-8').decode('latin-1'), 0, 1)
+    pdf.output('extracted_text.pdf', 'F')
+    return send_file("extracted_text.pdf",as_attachment=True, cache_timeout=0)
+
 
 
 @app.route("/fitur2")

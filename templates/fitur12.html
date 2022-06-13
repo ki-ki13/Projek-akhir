@@ -19,15 +19,60 @@
         </div>
     </header>
     <main class="flex flex-grow">
-        <div class="flex flex-col container w-full m-12">
+        <form class="flex flex-col container w-full m-12" action="{{ url_for('save_file') }}" method="post">
+        <div>
+            <div class="w-full m-4">
+                <input name="action" type="submit" class="bg-slate-700 p-4 rounded-md cursor-pointer text-white float-right" value="Unduh PDF Terjemahan">
+            </div>
+            {% if basefile == 'gambar' %}
+            <div class="flex md:flex-row flex-col flex-1 bg-white w-full h-full gap-x-6">
+                <div class="w-3/4 md:m-0 m-auto">
+                    
+                    <!-- enakan pake textarea tapi disable trus pake js bisa dicopas -->
+                    <h2 class="text-lg mb-4">Hasil</h2>
+                    
+                    {% for key,value in asal.items() %}
+                    <h2 class="text-base mb-4">Gambar ke-{{key}}</h2>
+                    <div class=" bg-slate-700 w-full text-center mb-4 p-4 rounded-md">
+                        <textarea name="hasil[]" class=" h-72 bg-slate-700 w-full text-lg text-white border-transparant">
+                        {% for i in value %}
+                            {{i}}
+                        {% endfor %}
+                        </textarea>
+                    </div>
+                    {% endfor %}
+                </div> 
+                <div class="w-3/4 md:m-0 m-auto">
+                    
+                    <!-- enakan pake textarea tapi disable trus pake js bisa dicopas -->
+                    <h2 class="text-lg mb-4">Hasil Terjemahan</h2>
+                    {% for key,value in tujuan.items() %}
+                    <h2 class="text-base mb-4">Gambar ke-{{key}}</h2>
+                    <div class="w-full bg-slate-700 text-center mb-4 p-4 rounded-md">
+                        <textarea name="hasilter[]" class=" h-72 bg-slate-700 w-full text-lg text-white border-transparant">
+                            {% for i in value %}
+                                {{i}}
+                            {% endfor %}
+                        </textarea>
+                    </div>
+                    {% endfor %}
+                </div> 
+            </div>
+            {% elif basefile == 'pdf' %}
             <div class="flex flex-1 bg-white w-full h-full gap-x-6">
                 <div class="w-3/4">
                     
                     <!-- enakan pake textarea tapi disable trus pake js bisa dicopas -->
                     <h2 class="text-lg mb-4">Hasil</h2>
-                    {% for i in range(panjangAsal) %}
+                    
+                    {% for key,value in asal.items() %}
+                    <h2 class="text-base mb-4">Halaman ke-{{key}}</h2>
                     <div class=" bg-slate-700 w-full text-center mb-4 p-4 rounded-md">
-                        <h2 class="text-lg text-white">{{asal[i]}}</h2>
+                        <textarea name="hasil[]" class=" h-72 bg-slate-700 w-full text-lg text-white border-transparant">
+                            {% for i in value %}
+                                {{i}}
+                            {% endfor %}
+                        </textarea>
                     </div>
                     {% endfor %}
                 </div> 
@@ -35,11 +80,17 @@
                     
                     <!-- enakan pake textarea tapi disable trus pake js bisa dicopas -->
                     <h2 class="text-lg mb-4">Hasil Terjemahan</h2>
-                    {% for i in range(panjangTujuan) %}
+                    {% for key,value in tujuan.items() %}
+                    <h2 class="text-base mb-4">Halaman ke-{{key}}</h2>
                     <div class="w-full bg-slate-700 text-center mb-4 p-4 rounded-md">
-                        <h2 class="text-lg text-white">{{tujuan[i]}} </h2>
+                        <textarea name="hasilter[]" class=" h-72 bg-slate-700 w-full text-lg text-white border-transparant">
+                            {% for i in value %}
+                                {{i}}
+                            {% endfor %}
+                        </textarea>
                     </div>
                     {% endfor %}
+                    {% endif %}
                 </div> 
             </div>
             <!-- <form class = "w-full " method="post"  action="">
@@ -64,6 +115,7 @@
             </div>
             </form> -->
         </div>
+        </form>
     </main>
     
     <footer class="flex-none">

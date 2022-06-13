@@ -4,12 +4,15 @@ from base64 import b64decode
 import lang
 import numpy as np
 import easyocr
+import os
 
 from googletrans import Translator
 from fpdf import FPDF
 from pdf2image import convert_from_path
 from PyPDF2 import PdfFileMerger
 
+basedir = os.path.abspath(os.path.dirname(__file__))
+UPLOADED_PATH_SEMENTARA=os.path.join(basedir, 'static\\sementara')
 
 def js_to_image(js_reply):
     # decode base64 image
@@ -70,8 +73,9 @@ def pdfToImage(path):
     img = convert_from_path(path)
     listImage = []
     for i in range(len(img)):
-        img[i].save('page'+ str(i) +'.jpg', 'JPEG')
-        listImage.append('page'+ str(i) +'.jpg')
+        img[i].save(os.path.join(UPLOADED_PATH_SEMENTARA,'page'+ str(i) +'.jpg'))
+        print(os.path.join(UPLOADED_PATH_SEMENTARA,'page'+ str(i) +'.jpg'))
+        listImage.append(os.path.join(UPLOADED_PATH_SEMENTARA,'page'+ str(i) +'.jpg'))
     return listImage
 
 

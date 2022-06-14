@@ -215,5 +215,14 @@ def display(teks, deteksi,probab ):
 
 
 
+@app.route("/about_us")
+def about_us():
+    return render_template("about_us.html")
+
+@app.route("/howitwork")
+def howitwork():
+    return render_template("about_us.html")
+
+
 if __name__ == '__main__':
     app.run(port=5000, debug=True)

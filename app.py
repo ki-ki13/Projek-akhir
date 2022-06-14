@@ -10,6 +10,7 @@ import easyocr
 from PIL import Image
 from flask_dropzone import Dropzone
 from base64 import b64decode
+from PyPDF2 import PdfFileMerger
 
 app = Flask(__name__)
 
@@ -17,6 +18,9 @@ listFormat, error = helper2.formatAndError()
 basedir = os.path.abspath(os.path.dirname(__file__))
 dirFull = f'{basedir}\\static\\upload'
 dircam = f'{basedir}\\static\\cam'
+dirFullSementara = f'{basedir}\\static\\sementara'
+pathHasilPdf=os.path.join(basedir, 'static\\hasilPDF')
+
 global imgl
 global t_teks
 global deteksi, probab
@@ -41,18 +45,29 @@ dropzone = Dropzone(app)
 def index():
     return render_template("index.html")
 
-
-@app.route("/fitur1",methods=['GET','POST'])
+@app.route("/fitur1")
 def fitur1():
+    return render_template("fitur1.html")
+
+@app.route("/fitur1teks",methods=['GET','POST'])
+def fitur1teks():
     if request.method == 'POST':
         f = request.files.get('file')
         f.save(os.path.join(app.config['UPLOADED_PATH'],f.filename))
     pesanError = request.args.get('pesan')
-    return render_template('fitur1.html', foobar=lang.LANGUAGES, pesan=pesanError)
+    return render_template('fitur1teks.html', foobar=lang.LANGUAGES, pesan=pesanError)
+
+@app.route("/fitur1pdf",methods=['GET','POST'])
+def fitur1pdf():
+    if request.method == 'POST':
+        f = request.files.get('file')
+        f.save(os.path.join(app.config['UPLOADED_PATH'],f.filename))
+    pesanError = request.args.get('pesan')
+    return render_template('fitur1pdf.html', foobar=lang.LANGUAGES, pesan=pesanError)
 
 
-@app.route("/fitur1/hasil", methods=['POST'])   
-def upload_file():
+@app.route("/fitur1/hasilteks", methods=['POST'])   
+def to_teks():
     listFile = []
     listPath = []
     dictAsal, dictTujuan = {},{}
@@ -108,7 +123,71 @@ def upload_file():
     for i in listPath:
         os.unlink(i)
         print(i)
-    return render_template("fitur12.html",  asal = dictAsal, tujuan = dictTujuan, basefile = baseFile)
+    return render_template("toteks.html",  asal = dictAsal, tujuan = dictTujuan, basefile = baseFile)
+
+@app.route("/fitur1/hasilpdf", methods=['POST'])
+def to_pdf():
+    fileHasilPDF = os.listdir(pathHasilPdf)
+    for i in fileHasilPDF:
+        os.unlink(os.path.abspath(os.path.join(pathHasilPdf, i)))
+    
+    merger = PdfFileMerger()
+    nilai = 0
+    listFile = []
+    listPath = []
+    fileNames = os.listdir(dirFull)
+    for i in fileNames:
+        listPath.append(os.path.abspath(os.path.join(dirFull, i)))
+        listFile.append(i)
+    err, baseFile, inputFile = helper2.cekFormat(listFormat, listFile)
+    print(err, baseFile, inputFile)
+    pesanError = helper2.cekError(error, err)
+    print(pesanError)
+    if pesanError != None:
+        for i in listPath:
+            os.unlink(i)
+        return (redirect(url_for('fitur1pdf', pesan = pesanError)))
+    
+    if baseFile == 'gambar':
+        for i in listPath:
+            img = helper2.readImage(i)
+            merger = helper2.saveAndMergePdf(img, nilai, merger)
+            nilai += 1
+        merger.write(os.path.join(pathHasilPdf,'HasilPDFbaru.pdf'))
+        merger.close()
+
+        fileNamesPDF = os.listdir(dirFullSementara)
+        for i in fileNamesPDF:
+            os.unlink(os.path.abspath(os.path.join(dirFullSementara, i)))
+
+        filePDF = os.listdir(pathHasilPdf)
+        for i in filePDF:
+            path = os.path.abspath(os.path.join(pathHasilPdf, i))
+        print(path)
+    
+    else:
+        listImage = helper2.pdfToImage(listPath[0])
+        print('Menjalankan loop')
+        for i in listImage:
+            img = helper2.readImage(i)
+            merger = helper2.saveAndMergePdf(img, nilai, merger)
+            nilai += 1
+        merger.write(os.path.join(pathHasilPdf,'HasilPDFbaru.pdf'))
+        merger.close()
+        for i in listImage:
+            os.unlink(i)
+        fileNamesPDF = os.listdir(dirFullSementara)
+        for i in fileNamesPDF:
+            os.unlink(os.path.abspath(os.path.join(dirFullSementara, i)))
+
+        filePDF = os.listdir(pathHasilPdf)
+        for i in filePDF:
+            path = os.path.abspath(os.path.join(pathHasilPdf, i))
+        print(path)
+
+    for i in listPath:
+        os.unlink(i)
+    return render_template("topdf.html")
 
 
 @app.route('/download', methods=['POST'])

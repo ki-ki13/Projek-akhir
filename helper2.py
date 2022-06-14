@@ -79,6 +79,14 @@ def pdfToImage(path):
     return listImage
 
 
+def saveAndMergePdf(img, nilai, merger):
+    pdf = pytesseract.image_to_pdf_or_hocr(img, extension='pdf')
+    with open(os.path.join(UPLOADED_PATH_SEMENTARA, f'pdf{nilai}.pdf'), 'w+b') as f:
+      f.write(pdf)
+    print(os.path.join(UPLOADED_PATH_SEMENTARA, f'pdf{nilai}.pdf'))
+    merger.append(os.path.join(UPLOADED_PATH_SEMENTARA, f'pdf{nilai}.pdf'))
+    return merger
+    
 def stringToPdf(teks, nilai, merger, tujuan=None, asal=None):
     pdf = FPDF() 
     pdf.add_page()

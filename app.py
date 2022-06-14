@@ -221,7 +221,7 @@ def about_us():
 
 @app.route("/howitwork")
 def howitwork():
-    return render_template("about_us.html")
+    return render_template("howitwork.html")
 
 
 if __name__ == '__main__':

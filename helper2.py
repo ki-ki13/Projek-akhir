@@ -10,6 +10,7 @@ from googletrans import Translator
 from fpdf import FPDF
 from pdf2image import convert_from_path
 from PyPDF2 import PdfFileMerger
+import pytesseract
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 UPLOADED_PATH_SEMENTARA=os.path.join(basedir, 'static\\sementara')
@@ -86,7 +87,7 @@ def saveAndMergePdf(img, nilai, merger):
     print(os.path.join(UPLOADED_PATH_SEMENTARA, f'pdf{nilai}.pdf'))
     merger.append(os.path.join(UPLOADED_PATH_SEMENTARA, f'pdf{nilai}.pdf'))
     return merger
-    
+
 def stringToPdf(teks, nilai, merger, tujuan=None, asal=None):
     pdf = FPDF() 
     pdf.add_page()

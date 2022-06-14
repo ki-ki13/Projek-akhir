@@ -49,8 +49,8 @@ def index():
 def fitur1():
     return render_template("fitur1.html")
 
-@app.route("/fitur1teks",methods=['GET','POST'])
-def fitur1teks():
+@app.route("/fitur1text",methods=['GET','POST'])
+def fitur1text():
     if request.method == 'POST':
         f = request.files.get('file')
         f.save(os.path.join(app.config['UPLOADED_PATH'],f.filename))
@@ -207,6 +207,11 @@ def save_file():
     pdf.output('extracted_text.pdf', 'F')
     return send_file("extracted_text.pdf",as_attachment=True, cache_timeout=0)
 
+
+@app.route("/downloadpdf")
+def savefile():
+    path = os.path.abspath(os.path.join(pathHasilPdf, "HasilPDFbaru.pdf"))
+    return send_file(path ,as_attachment=True, cache_timeout=0)
 
 
 @app.route("/fitur2")

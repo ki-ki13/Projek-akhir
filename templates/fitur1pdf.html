@@ -30,82 +30,13 @@
                 <h2 class="text-2xl mb-4 md:mb-10">Judul</h2>
                 <p class="text-2xl mb-4 md:mb-10">Unggah Gambar</p>
                 <div class="w-3/4 m-auto">
-                  {{ dropzone.create(action='fitur1') }}
+                  {{ dropzone.create(action='fitur1pdf') }}
                 </div>
                 <form
                   class="w-3/4 m-auto"
                   action="{{ url_for('to_pdf') }}"
                   method="POST"
                 >
-                <div class="flex flex-col md:flex-row justify-between mt-4">
-                    <div class="flex-1">
-                        <h2 class="text-base text-center md:text-left mb-2">Asal Bahasa</h2>
-                        <select
-                            class="dropdown  p-4  md:float-left md:m-0 mb-4"
-                            placeholder="Asal Bahasa"
-                            name="asal"
-                        >
-                            <button
-                            class="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center"
-                            >
-                            <span class="mr-1">Asal Bahasa</span>
-                            <svg
-                                class="fill-current h-4 w-4"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20"
-                            >
-                                <path
-                                d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-                                />
-                            </svg>
-                            </button>
-                            <ul class="dropdown-menu absolute hidden text-gray-700 pt-1">
-                            {% for key, value in foobar.items() %}
-                            <option
-                                value="{{ value }}"
-                                class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
-                            >
-                                {{ value }}
-                            </option>
-                            {% endfor %}
-                            </ul>
-                        </select>
-                    </div>
-                    <div class="flex-1">
-                        <h2 class="text-base text-center md:text-left mb-2">Tujuan Bahasa</h2>
-                        <select
-                            class="dropdown  p-4 mb-4 md:m-0 md:float-left"
-                            placeholder="Tujuan Bahasa"
-                            name="tujuan"
-                        >
-                        <button
-                        class="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center"
-                        >
-                        <span class="mr-1">Asal Bahasa</span>
-                        <svg
-                            class="fill-current h-4 w-4"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 20 20"
-                        >
-                            <path
-                            d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-                            />
-                        </svg>
-                        </button>
-                        <ul class="dropdown-menu absolute hidden text-gray-700 pt-1">
-                        {% for key, value in foobar.items() %}
-                        <option
-                            value="{{ value }}"
-                            class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
-                        >
-                            {{ value }}
-                        </option>
-                        {% endfor %}
-                        </ul>
-                        </select>
-                    </div>
-                </div>
-                <h2 class="text-base my-3"> Note : Pilih bahasa yang sama pada tujuan bahasa, jika tidak ingin diterjemahkan</h2>
                   <input
                     class="mt-4 p-4 w-44 bg-slate-700 text-white text-center cursor-pointer"
                     type="submit"

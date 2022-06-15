@@ -49,13 +49,11 @@
                                 class="block py-2 pr-4 pl-3 text-white  md:p-0 hover:font-bold hover:font-bold">Home</a>
                         </li>
                         <li>
-                            <a href="howitwork"
-                                class="block py-2 pr-4 pl-3 text-white font-light md:p-0 hover:font-bold">How it
+                            <a href="howitwork" class="block py-2 pr-4 pl-3 text-white md:p-0 hover:font-bold">How it
                                 works</a>
                         </li>
                         <li>
-                            <a href="about_us"
-                                class="block py-2 pr-4 pl-3 text-white font-light md:p-0 hover:font-bold">About
+                            <a href="about_us" class="block py-2 pr-4 pl-3 text-white md:p-0 hover:font-bold">About
                                 Us</a>
                         </li>
                     </ul>
@@ -76,13 +74,13 @@
                     <div class="w-3/4 md:m-0 m-auto">
 
                         <!-- enakan pake textarea tapi disable trus pake js bisa dicopas -->
-                        <h2 class="text-lg mb-4">Hasil</h2>
+                        <h2 class="text-lg text-[#3F72AF] font-semibold mb-4">Result</h2>
 
                         {% for key,value in asal.items() %}
-                        <h2 class="text-base mb-4">Gambar ke-{{key}}</h2>
-                        <div class=" bg-slate-700 w-full text-center mb-4 p-4 rounded-md">
+                        <h2 class="text-base mb-4">Image-{{key}}</h2>
+                        <div class=" bg-[#DBE2EF] border-2 border-gray-400 w-full text-center mb-4 p-8 rounded-md">
                             <textarea name="hasil[]"
-                                class=" h-72 bg-slate-700 w-full text-lg text-white border-transparant">
+                                class="h-72 bg-white w-full text-lg m-0 text-gray-700 border-transparant">
                         {% for i in value %}
                             {{i}}
                         {% endfor %}
@@ -93,12 +91,12 @@
                     <div class="w-3/4 md:m-0 m-auto">
 
                         <!-- enakan pake textarea tapi disable trus pake js bisa dicopas -->
-                        <h2 class="text-lg mb-4">Hasil Terjemahan</h2>
+                        <h2 class="text-lg font-semibold text-[#3F72AF] mb-4">Translation Result</h2>
                         {% for key,value in tujuan.items() %}
-                        <h2 class="text-base mb-4">Gambar ke-{{key}}</h2>
-                        <div class="w-full bg-slate-700 text-center mb-4 p-4 rounded-md">
+                        <h2 class="text-base mb-4">Image-{{key}}</h2>
+                        <div class="w-full bg-[#DBE2EF] border-2 border-gray-400 text-center mb-4 p-8 rounded-md">
                             <textarea name="hasilter[]"
-                                class=" h-72 bg-slate-700 w-full text-lg text-white border-transparant">
+                                class=" h-72 bg-white w-full text-lg mx-auto text-gray-700 border-transparant">
                             {% for i in value %}
                                 {{i}}
                             {% endfor %}

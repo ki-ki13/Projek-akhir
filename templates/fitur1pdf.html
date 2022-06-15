@@ -13,7 +13,7 @@
 
 <body class="flex flex-col container min-h-screen w-full font-mono">
   <header>
-    <nav class="bg-[#1F2937] px-2 py-2.5 dark:bg-gray-800">
+    <nav class="bg-[#112D4E] px-2 py-2.5 dark:bg-gray-800">
       <div class="container flex flex-wrap justify-between items-center">
         <a href="{{ url_for('index') }}" class="flex items-center md:ml-10">
           <img src="static/asset/GOOCR2.png" class="mr-3 h-6 sm:h-9" alt="Logo">
@@ -74,7 +74,7 @@
           </div>
 
           <form class="w-3/4 m-auto" action="{{ url_for('to_pdf') }}" method="POST">
-            <input class="mt-4 mb-12 p-3 w-44 bg-[#3F72AF] text-white text-center cursor-pointer" type="submit"
+            <input class="mt-4 mb-12 p-2 rounded w-44 bg-[#3F72AF] text-white text-center cursor-pointer" type="submit"
               id="submit" value="Upload" />
           </form>
         </div>

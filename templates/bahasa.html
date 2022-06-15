@@ -7,6 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fitur 2</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.7/dist/flowbite.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap" rel="stylesheet">
     <style>
         .dropdown:hover .dropdown-menu {
             display: block;
@@ -14,14 +23,14 @@
     </style>
 </head>
 
-<body class="flex flex-col container min-h-screen w-fu font-mono">
-    <header class="m-0 w-full">
-        <nav class="bg-[#112D4E] border-[#707070] px-2 py-2.5 dark:bg-gray-800 mb-20 w-full">
+<body class="flex flex-col container min-h-screen w-full font-mono">
+    <header class="flex-none">
+        <nav class="bg-[#112D4E] px-2 py-2.5 dark:bg-gray-800">
             <div class="container flex flex-wrap justify-between items-center">
-                <a href="{{ url_for('index') }}" class="flex items-center ml-10">
-                    <img src="static/Asset/GOOCR.png" class="mr-3 h-6 sm:h-9" alt="Logo">
+                <a href="{{ url_for('index') }}" class="flex items-center md:ml-10">
+                    <img src="static/asset/GOOCR2.png" class="mr-3 h-6 sm:h-9" alt="Logo">
                     <span
-                        class="self-center text-xl font-semibold whitespace-nowrap text-white dark:text-white">GOOCR</span>
+                        class="self-center text-xl font-semibold whitespace-nowrap text-white dark:text-white">GoOCR</span>
                 </a>
                 <div class="flex md:order-1">
                     <button data-collapse-toggle="mobile-menu-4" type="button"
@@ -46,7 +55,7 @@
                         class="flex flex-col justify-between md:items-center mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium mr-20">
                         <li>
                             <a href="{{ url_for('index') }}"
-                                class="block py-2 pr-4 pl-3 text-white  md:p-0 hover:font-bold hover:font-bold">Home</a>
+                                class="block py-2 pr-4 pl-3 text-white  md:p-0 hover:font-bold">Home</a>
                         </li>
                         <li>
                             <a href="howitwork" class="block py-2 pr-4 pl-3 text-white  md:p-0 hover:font-bold">How it
@@ -62,7 +71,7 @@
         </nav>
     </header>
     <main class="flex flex-col flex-grow">
-        <div class="flex bg-[#DBE2EF] flex-col rounded-t-lg md:flex-row gap-x-6 mx-12 p-8">
+        <div class="flex bg-[#DBE2EF] flex-col rounded-t-lg md:flex-row gap-x-6 mx-12 mt-12 p-8">
             <div class="w-full text-center">
                 <video id="video" class="m-auto rounded-md" width="640" height="480" autoplay></video>
                 <button class="bg-[#3F72AF] text-white font-semibold py-2 px-4 rounded inline-flex items-center m-3"
@@ -76,14 +85,14 @@
         </div>
         <div class="mb-32">
             <div class="flex flex-col p-4 bg-[#DBE2EF] rounded-b-lg mx-12">
-                <h2 class="ml-40 mb-4 text-[#3F72AF] text-lg">Select the Language</h2>
+                <h2 class="ml-32 lg:ml-44 mb-4 text-[#3F72AF] text-lg">Select the Language</h2>
                 <div class="flex flex-col md:flex-row">
-                    <div class="flex-1  m-auto m-auto text-center">
+                    <div class="flex-1 m-auto text-center">
 
-                        <select class="dropdown inline-block p-4 bg-[#3F72AF] text-white relative" id="asal">
+                        <select class="dropdown text-white inline-block p-3 bg-[#3F72AF] relative" id="asal">
                             <button
                                 class="bg-gray-300 text-black font-semibold py-2 px-4 rounded inline-flex items-center">
-                                <svg class="fill-current h-4 w-4 text-black" xmlns="http://www.w3.org/2000/svg"
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 20 20">
                                     <path
                                         d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
@@ -99,10 +108,10 @@
                         </select>
                     </div>
                     <div class="flex-2">
-                        <p class="mb-4 mx-auto ml-56 mt-4 lg:mt-4 lg:-ml-4 text-[#3F72AF]">to</p>
+                        <p class="mb-4 mt-4 md:text-right text-center text-[#3F72AF]">to</p>
                     </div>
-                    <div class="flex-1 m-auto text-center">
-                        <select class="dropdown inline-block p-4 bg-[#3F72AF] text-white relative" id="tujuan">
+                    <div class="flex-1  m-auto  m-auto text-center">
+                        <select class="dropdown inline-block p-3 bg-[#3F72AF] text-white relative" id="tujuan">
                             <button
                                 class="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
@@ -121,7 +130,7 @@
                         </select>
                     </div>
                 </div>
-                <button class="mx-auto my-10 w-44 p-4 bg-[#3F72AF] text-white text-center cursor-pointer rounded-md"
+                <button class="mx-auto my-10 w-44 p-3 bg-[#3F72AF] text-white text-center cursor-pointer rounded-md"
                     type="submit" id="submit" value="Lanjutkan">Process</button>
             </div>
 
@@ -129,7 +138,7 @@
 
     </main>
     <footer class="flex-none">
-        <div class="container py-4 text-center bg-[#1F2937]">
+        <div class="container py-4 text-center bg-[#112D4E]">
             <span class="text-base text-white">© All Rights Reserved Copyright 2022</span>
         </div>
     </footer>

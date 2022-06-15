@@ -10,13 +10,13 @@
 </head>
 
 <body class="flex flex-col min-h-screen w-full font-mono">
-    <header class="m-0">
-        <nav class="bg-[#112D4E] border-[#707070] px-2 py-2.5 dark:bg-gray-800 mb-20">
+    <header>
+        <nav class="bg-[#112D4E] px-2 py-2.5 dark:bg-gray-800">
             <div class="container flex flex-wrap justify-between items-center">
-                <a href="{{ url_for('index') }}" class="flex items-center ml-10">
-                    <img src="static/Asset/GOOCR.png" class="mr-3 h-6 sm:h-9" alt="Logo">
+                <a href="{{ url_for('index') }}" class="flex items-center md:ml-10">
+                    <img src="/static/asset/GOOCR2.png" class="mr-3 h-6 sm:h-9" alt="Logo">
                     <span
-                        class="self-center text-xl font-semibold whitespace-nowrap text-white dark:text-white">GOOCR</span>
+                        class="self-center text-xl font-semibold whitespace-nowrap text-white dark:text-white">GoOCR</span>
                 </a>
                 <div class="flex md:order-1">
                     <button data-collapse-toggle="mobile-menu-4" type="button"
@@ -39,18 +39,18 @@
                 <div class="hidden justify-between w-full md:flex md:w-auto md:order-1" id="mobile-menu-4">
                     <ul
                         class="flex flex-col justify-between md:items-center mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium mr-20">
-
                         <li>
                             <a href="{{ url_for('index') }}"
-                                class="block py-2 pr-4 pl-3 text-black bg-white rounded md:bg-transparent md:text-white md:p-0 dark:text-white"
-                                aria-current="page">Home</a>
+                                class="block py-2 pr-4 pl-3 text-white  md:p-0 hover:font-bold hover:font-bold">Home</a>
                         </li>
                         <li>
-                            <a href="about_us"
-                                class="block py-2 pr-4 pl-3 text-white font-light border-b border-gray-100 hover:bg-gray-50 hover:text-black md:hover:bg-transparent md:border-0 md:hover:font-bold md:hover:text-white md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About
+                            <a href="howitwork" class="block py-2 pr-4 pl-3 text-white  md:p-0 hover:font-bold">How it
+                                works</a>
+                        </li>
+                        <li>
+                            <a href="about_us" class="block py-2 pr-4 pl-3 text-white  md:p-0 hover:font-bold">About
                                 Us</a>
                         </li>
-
                     </ul>
                 </div>
             </div>
@@ -59,47 +59,37 @@
     <main class="flex flex-col flex-grow">
         <div class="flex flex-col md:flex-row container w-full">
             <div class="flex-1 w-full h-full">
-                <h2 class="text-lg mt-12 text-center"> Hasil Gambar</h2>
+                <h2 class="text-2xl font-bold mt-12 text-center text-gray-700"> IMAGES TO TEXT WITH TRANSLATION </h2>
                 <div class="w-full mt-6 mb-12">
                     <img class="m-auto rounded-md" src="{{url_for('static', filename='/cam/photo.jpeg')}}">
                 </div>
             </div>
         </div>
 
-        <div class="bg-slate-700 rounded-md w-96 md:w-3/4 mx-auto mb-12 teks-center text-white p-6">
-            <h2 class="text-lg mb-4"> Hasil Terjemahan :</h2>
-            <textarea class="bg-slate-700 h-44 w-full border border-solid border-white rounded-md">
+        <div class="bg-[#DBE2EF] rounded-md w-96 md:w-3/4 mx-auto mb-12 teks-center text-white p-6">
+            <h2 class="text-lg mb-4 text-[#3F72AF]"> Translation Result :</h2>
+            <textarea class="bg-white text-gray-700 h-44 w-full border border-solid border-white rounded-md">
                 {{trans}}
             </textarea>
-            <h2 class="text-lg my-4"> Rincian :</h2>
+            <h2 class="text-lg my-4 text-[#3F72AF]"> Details :</h2>
             {% if len_hasil > 1 %}
             {% for i in range(len_hasil) %}
-            <h2 class="text-base"> {{hasil_deteksi[i]}} -> {{hasil_trans[i]}} dengan probabilitas {{probab[i]}}</h2>
+            <h2 class="text-base text-[#3F72AF]"> {{hasil_deteksi[i]}} -> {{hasil_trans[i]}} with probability
+                {{probab[i]}}
+            </h2>
             {% endfor %}
             {% else %}
-            <h2 class="text-base"> {{hasil_deteksi[0]}} -> {{hasil_trans[0]}} dengan probabilitas {{probab[0]}}</h2>
+            <h2 class="text-base text-[#3F72AF]"> {{hasil_deteksi[0]}} -> {{hasil_trans[0]}} with probability
+                {{probab[0]}}
+            </h2>
             {% endif %}
         </div>
     </main>
 
-    <footer
-        class="bg-[#112D4E] border-[#707070] shadow md:flex md:items-center justify-between p-4 dark:bg-gray-800 bottom-0">
-        <span class="text-sm justify-center items-center text-white sm:text-center dark:text-white">&#169; All Rights
-            Reserved
-            Copyright 2022</span>
-        <ul class="flex flex-wrap items-center mt-3 text-sm text-white dark:text-gray-400 sm:mt-0">
-            <li>
-                <a href="#!" class="mr-6 text-white">
-                    TERMS
-                </a>
-            </li>
-            <li>
-                <a href="#!" class="mr-6 text-white">
-                    PRIVACY POLICY
-                </a>
-            </li>
-
-        </ul>
+    <footer class="flex-none">
+        <div class="container py-4 text-center bottom bg-[#112D4E]">
+            <span class="text-base text-white">© All Rights Reserved Copyright 2022</span>
+        </div>
     </footer>
     <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
 </body>

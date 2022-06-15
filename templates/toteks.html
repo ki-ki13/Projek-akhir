@@ -14,7 +14,7 @@
     </style>
 </head>
 
-<body class="flex flex-col container min-h-screen w-full">
+<body class="flex flex-col container min-h-screen w-full font-mono">
     <header>
         <nav class="bg-[#112D4E] px-2 py-2.5 dark:bg-gray-800">
             <div class="container flex flex-wrap justify-between items-center">
@@ -49,11 +49,13 @@
                                 class="block py-2 pr-4 pl-3 text-white  md:p-0 hover:font-bold hover:font-bold">Home</a>
                         </li>
                         <li>
-                            <a href="howitwork" class="block py-2 pr-4 pl-3 text-white  md:p-0 hover:font-bold">How it
+                            <a href="howitwork"
+                                class="block py-2 pr-4 pl-3 text-white font-light md:p-0 hover:font-bold">How it
                                 works</a>
                         </li>
                         <li>
-                            <a href="about_us" class="block py-2 pr-4 pl-3 text-white  md:p-0 hover:font-bold">About
+                            <a href="about_us"
+                                class="block py-2 pr-4 pl-3 text-white font-light md:p-0 hover:font-bold">About
                                 Us</a>
                         </li>
                     </ul>
@@ -66,8 +68,8 @@
             <div>
                 <div class="w-full m-4">
                     <input name="action" type="submit"
-                        class="bg-slate-700 p-4 rounded-md cursor-pointer text-white float-right"
-                        value="Unduh PDF Terjemahan">
+                        class="bg-[#3F72AF] p-4 rounded-md cursor-pointer text-white text-bold float-right"
+                        value="Download PDF Translation">
                 </div>
                 {% if basefile == 'gambar' %}
                 <div class="flex md:flex-row flex-col flex-1 bg-white w-full h-full gap-x-6">
@@ -127,12 +129,12 @@
                     <div class="w-3/4">
 
                         <!-- enakan pake textarea tapi disable trus pake js bisa dicopas -->
-                        <h2 class="text-lg mb-4">Hasil Terjemahan</h2>
+                        <h2 class="text-lg mb-4">Translation Result</h2>
                         {% for key,value in tujuan.items() %}
                         <h2 class="text-base mb-4">Halaman ke-{{key}}</h2>
-                        <div class="w-full bg-slate-700 text-center mb-4 p-4 rounded-md">
+                        <div class="w-full bg-[#DBE2EF] border-2 border-gray-400 text-center mb-4 p-4 rounded-md">
                             <textarea name="hasilter[]"
-                                class=" h-72 bg-slate-700 w-full text-lg text-white border-transparant">
+                                class=" h-72 bg-slate-700 w-full text-lg text-gray-700 border-transparant">
                             {% for i in value %}
                                 {{i}}
                             {% endfor %}
@@ -142,27 +144,6 @@
                         {% endif %}
                     </div>
                 </div>
-                <!-- <form class = "w-full " method="post"  action="">
-                <div class="  w-1/2 float-right pl-4 flex">
-                    <div class="flex-1">
-                        <h2 class="mb-2 text-lg">Tujuan Bahasa</h2>
-                        <select class="dropdown inline-block p-4 relative" name="tujuan">
-                            <button class="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
-                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
-                            </button>
-                            <ul class="dropdown-menu absolute hidden text-gray-700 pt-1">
-                            
-                            <option value ="" class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"></option>
-                            </ul>
-                        </select>
-                        <input type="hidden" value="" name="asal2">
-                    </div>
-                    <div class="flex-1 text-right m-auto "> 
-                        <input type="submit" id="submit2" class="bg-gray-300 text-gray-700 font-semibold p-4 rounded" value="Terjemahkan">
-                    </div>
-                </div>  
-            </div>
-            </form> -->
             </div>
         </form>
     </main>

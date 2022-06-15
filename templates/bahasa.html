@@ -91,17 +91,17 @@
 
                         <select class="dropdown text-white inline-block p-3 bg-[#3F72AF] relative" id="asal">
                             <button
-                                class="bg-gray-300 text-black font-semibold py-2 px-4 rounded inline-flex items-center">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                class="bg-white text-white font-semibold py-2 px-4 rounded inline-flex items-center">
+                                <svg class="fill-current text-white bg-white h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 20 20">
                                     <path
                                         d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                 </svg>
                             </button>
-                            <ul class="dropdown-menu absolute hidden text-black pt-1">
+                            <ul class="dropdown-menu absolute hidden text-white pt-1">
                                 {% for key, value in foobar.items() %}
                                 <option value="{{ value }}"
-                                    class="rounded-t bg-gray-200 hover:bg-gray-400 text-black py-2 px-4 block whitespace-no-wrap">
+                                    class="rounded-t bg-white hover:bg-white text-black py-2 px-4 block whitespace-no-wrap">
                                     {{ value }}</option>
                                 {% endfor %}
                             </ul>

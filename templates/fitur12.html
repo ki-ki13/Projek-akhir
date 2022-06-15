@@ -62,52 +62,88 @@
         </nav>
     </header>
     <main class="flex flex-grow">
-        <div class="flex flex-col gap-16 md:flex-row container w-full">
-            <div class="flex flex-1 w-full h-full">
-                <div class="w-3/4 m-auto">
-                    <h2
-                        class="text-lg font-semibold mx-auto bg-[#3F72AF] text-white py-1 px-4 rounded inline-flex items-center">
-                        Hasil</h2>
-                    <!-- enakan pake textarea tapi disable trus pake js bisa dicopas -->
-                    <div class=" bg-[#DBE2EF] border-[#707070] w-full h-72 p-4 text-center">
-                        <div><img class="w-1/3 md:shrink-0 mx-auto" src="static/Asset/success.png" alt="success">
+        <form class="flex flex-col container w-full m-12" action="{{ url_for('save_file') }}" method="post">
+            <div>
+                <div class="w-full m-4">
+                    <input name="action" type="submit"
+                        class="bg-slate-700 p-4 rounded-md cursor-pointer text-white float-right"
+                        value="Unduh PDF Terjemahan">
+                </div>
+                {% if basefile == 'gambar' %}
+                <div class="flex md:flex-row flex-col flex-1 bg-white w-full h-full gap-x-6">
+                    <div class="w-3/4 md:m-0 m-auto">
+
+                        <!-- enakan pake textarea tapi disable trus pake js bisa dicopas -->
+                        <h2 class="text-lg mb-4">Hasil</h2>
+
+                        {% for key,value in asal.items() %}
+                        <h2 class="text-base mb-4">Gambar ke-{{key}}</h2>
+                        <div class=" bg-slate-700 w-full text-center mb-4 p-4 rounded-md">
+                            <textarea name="hasil[]"
+                                class=" h-72 bg-slate-700 w-full text-lg text-white border-transparant">
+                        {% for i in value %}
+                            {{i}}
+                        {% endfor %}
+                        </textarea>
                         </div>
-                        <h2 class="text-lg text-black font-bold">Succesfull</h2>
-                        <p class="text-sm text-black mb-8">The Images have been converted to PDF</p>
-                        <a href="fitur2"
-                            class="text-base font-semibold mx-auto text-white bg-[#3F72AF] w-40 h-12 py-3 px-8 rounded hover:shadow-lg hover:opacity-80 transition duration-300 ease-in-out">Download
-                            File</a>
+                        {% endfor %}
+                    </div>
+                    <div class="w-3/4 md:m-0 m-auto">
+
+                        <!-- enakan pake textarea tapi disable trus pake js bisa dicopas -->
+                        <h2 class="text-lg mb-4">Hasil Terjemahan</h2>
+                        {% for key,value in tujuan.items() %}
+                        <h2 class="text-base mb-4">Gambar ke-{{key}}</h2>
+                        <div class="w-full bg-slate-700 text-center mb-4 p-4 rounded-md">
+                            <textarea name="hasilter[]"
+                                class=" h-72 bg-slate-700 w-full text-lg text-white border-transparant">
+                            {% for i in value %}
+                                {{i}}
+                            {% endfor %}
+                        </textarea>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% elif basefile == 'pdf' %}
+                <div class="flex flex-1 bg-white w-full h-full gap-x-6">
+                    <div class="w-3/4">
+
+                        <!-- enakan pake textarea tapi disable trus pake js bisa dicopas -->
+                        <h2 class="text-lg mb-4">Hasil</h2>
+
+                        {% for key,value in asal.items() %}
+                        <h2 class="text-base mb-4">Halaman ke-{{key}}</h2>
+                        <div class=" bg-slate-700 w-full text-center mb-4 p-4 rounded-md">
+                            <textarea name="hasil[]"
+                                class=" h-72 bg-slate-700 w-full text-lg text-white border-transparant">
+                            {% for i in value %}
+                                {{i}}
+                            {% endfor %}
+                        </textarea>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="w-3/4">
+
+                        <!-- enakan pake textarea tapi disable trus pake js bisa dicopas -->
+                        <h2 class="text-lg mb-4">Hasil Terjemahan</h2>
+                        {% for key,value in tujuan.items() %}
+                        <h2 class="text-base mb-4">Halaman ke-{{key}}</h2>
+                        <div class="w-full bg-slate-700 text-center mb-4 p-4 rounded-md">
+                            <textarea name="hasilter[]"
+                                class=" h-72 bg-slate-700 w-full text-lg text-white border-transparant">
+                            {% for i in value %}
+                                {{i}}
+                            {% endfor %}
+                        </textarea>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
                     </div>
                 </div>
             </div>
-            <div class="flex mb-4 md:m-auto flex-1 bg-white w-full h-full">
-                <div class="w-3/4 m-auto">
-                    <div class="dropdown inline-block relative">
-                        <button
-                            class="bg-[#3F72AF] text-white font-semibold py-2 px-4 rounded inline-flex items-center">
-                            <span class="mr-1">Pilih Bahasa</span>
-                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                            </svg>
-                        </button>
-                        <ul class="dropdown-menu absolute hidden text-gray-700 pt-1">
-                            <li class=""><a
-                                    class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
-                                    href="#">One</a></li>
-                            <li class=""><a class="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
-                                    href="#">Two</a></li>
-                            <li class=""><a
-                                    class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
-                                    href="#">Three is the magic number</a></li>
-                        </ul>
-                    </div>
-                    <!-- enakan pake textarea tapi disable trus pake js bisa dicopas -->
-                    <div class="w-full bg-[#DBE2EF] border-[#707070] h-72 text-center">
-                        <h2 class="text-lg text-gray-500">Your Translate </h2>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </form>
     </main>
 
     <footer

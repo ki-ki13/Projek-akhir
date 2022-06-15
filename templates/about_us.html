@@ -5,17 +5,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.7/dist/flowbite.min.css" />
-    <title>About us</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap" rel="stylesheet">
 </head>
 
-<body class="font-mono">
-    <header class="m-0">
-        <nav class="bg-[#112D4E] border-[#707070] px-2 py-2.5 dark:bg-gray-800 mb-20">
+<body class="rflex flex-col container min-h-screen w-full">
+    <header class="flex-none">
+        <nav class="bg-[#1F2937] px-2 py-2.5 dark:bg-gray-800">
             <div class="container flex flex-wrap justify-between items-center">
-                <a href="{{ url_for('index') }}" class="flex items-center ml-10">
-                    <img src="static/Asset/GOOCR.png" class="mr-3 h-6 sm:h-9" alt="Logo">
+                <a href="{{ url_for('index') }}" class="flex items-center md:ml-10">
+                    <img src="static/asset/GOOCR2.png" class="mr-3 h-6 sm:h-9" alt="Logo">
                     <span
                         class="self-center text-xl font-semibold whitespace-nowrap text-white dark:text-white">GOOCR</span>
                 </a>
@@ -40,160 +43,149 @@
                 <div class="hidden justify-between w-full md:flex md:w-auto md:order-1" id="mobile-menu-4">
                     <ul
                         class="flex flex-col justify-between md:items-center mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium mr-20">
-
                         <li>
                             <a href="{{ url_for('index') }}"
-                                class="block py-2 pr-4 pl-3 text-black bg-white rounded md:bg-transparent md:text-white md:p-0 dark:text-white"
-                                aria-current="page">Home</a>
+                                class="block py-2 pr-4 pl-3 text-white  md:p-0 hover:font-bold">Home</a>
                         </li>
                         <li>
-                            <a href="about_us"
-                                class="block py-2 pr-4 pl-3 text-white font-light border-b border-gray-100 hover:bg-gray-50 hover:text-black md:hover:bg-transparent md:border-0 md:hover:font-bold md:hover:text-white md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About
+                            <a href="howitwork" class="block py-2 pr-4 pl-3 text-white  md:p-0 hover:font-bold">How it
+                                works</a>
+                        </li>
+                        <li>
+                            <a href="about_us" class="block py-2 pr-4 pl-3 text-white  md:p-0 hover:font-bold">About
                                 Us</a>
                         </li>
-
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <main>
-
-        <!-- Ahmad Solikhin Gayuh Raharjo -->
-        <div class="bg-[#DBE2EF] border-[#707070] rounded-xl shadow-md overflow-hidden m-8">
-            <div class="md:flex">
-                <div class="md:shrink-0">
-                    <img class="h-48 object-cover md:h-full w-full md:w-48" src="static/Asset/gayuh.jpg" alt="Emoji">
-                </div>
-                <div class="p-8">
-                    <div class="uppercase tracking-wide text-xl text-indigo-500 font-semibold pb-4">Ahmad Solikhin
-                        Gayuh
-                        Raharjo
+    <main class="flex flex-grow">
+        <div class="w-full">
+            <!-- Ahmad Solikhin Gayuh Raharjo -->
+            <div class="bg-[#DBE2EF] border-[#707070] rounded-xl shadow-md overflow-hidden m-8">
+                <div class="md:flex">
+                    <div class="md:shrink-0">
+                        <img class="h-48 object-cover md:h-full w-full md:w-48" src="static/asset/gayuh.jpg"
+                            alt="Emoji">
                     </div>
-                    <a href="#" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">Data
-                        Scientist
-                    </a>
-                    <p class="mt-2 text-slate-500">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                        Corporis,
-                        saepe. Tempore vitae debitis consequatur voluptatum perspiciatis, cumque, veniam nulla, sint
-                        autem
-                        tenetur odit qui esse ratione ab alias! Tempora, ducimus.</p>
+                    <div class="p-8">
+                        <div class="uppercase tracking-wide text-xl text-[#3F72AF] font-semibold pb-4">Ahmad Solikhin
+                            Gayuh
+                            Raharjo
+                        </div>
+                        <a href="#" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">Data
+                            Scientist
+                        </a>
+                        <p class="mt-2 text-slate-500">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                            Corporis,
+                            saepe. Tempore vitae debitis consequatur voluptatum perspiciatis, cumque, veniam nulla, sint
+                            autem
+                            tenetur odit qui esse ratione ab alias! Tempora, ducimus.</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Ramadhan Ridho Arrohman -->
-        <div class="bg-[#DBE2EF] border-[#707070] rounded-xl shadow-md overflow-hidden m-8">
-            <div class="md:flex">
-                <div class="md:shrink-0">
-                    <img class="h-48 w-full object-cover md:h-full md:w-48" src="static/Asset/ridho.jpg" alt="Emoji">
-                </div>
-                <div class="p-8">
-                    <div class="uppercase tracking-wide text-xl text-indigo-500 font-semibold pb-4">Ramadhan Ridho
-                        Arrohman
+            <!-- Ramadhan Ridho Arrohman -->
+            <div class="bg-[#DBE2EF] border-[#707070] rounded-xl shadow-md overflow-hidden m-8">
+                <div class="md:flex">
+                    <div class="md:shrink-0">
+                        <img class="h-48 w-full object-cover md:h-full md:w-48" src="static/asset/ridho.jpg"
+                            alt="Emoji">
                     </div>
-                    <a href="#" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">Quality
-                        Assurance</a>
-                    <p class="mt-2 text-slate-500">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                        Corporis,
-                        saepe. Tempore vitae debitis consequatur voluptatum perspiciatis, cumque, veniam nulla, sint
-                        autem
-                        tenetur odit qui esse ratione ab alias! Tempora, ducimus.</p>
+                    <div class="p-8">
+                        <div class="uppercase tracking-wide text-xl text-[#3F72AF] font-semibold pb-4">Ramadhan Ridho
+                            Arrohman
+                        </div>
+                        <a href="#"
+                            class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">Quality
+                            Assurance</a>
+                        <p class="mt-2 text-slate-500">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                            Corporis,
+                            saepe. Tempore vitae debitis consequatur voluptatum perspiciatis, cumque, veniam nulla, sint
+                            autem
+                            tenetur odit qui esse ratione ab alias! Tempora, ducimus.</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Rizki Mahjati Prie Husna -->
-        <div class="bg-[#DBE2EF] border-[#707070] rounded-xl shadow-md overflow-hidden m-8">
-            <div class="md:flex">
-                <div class="md:shrink-0">
-                    <img class="h-48 w-full object-cover md:h-full md:w-48" src="static/Asset/kiki.jpg" alt="Emoji">
-                </div>
-                <div class="p-8">
-                    <div class="uppercase tracking-wide text-xl text-indigo-500 font-semibold pb-4">Rizki Mahjati
-                        Prie
-                        Husna
+            <!-- Rizki Mahjati Prie Husna -->
+            <div class="bg-[#DBE2EF] border-[#707070] rounded-xl shadow-md overflow-hidden m-8">
+                <div class="md:flex">
+                    <div class="md:shrink-0">
+                        <img class="h-48 w-full object-cover md:h-full md:w-48" src="static/asset/kiki.jpg" alt="Emoji">
                     </div>
-                    <a href="#" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">Back
-                        End
-                        Developer</a>
-                    <p class="mt-2 text-slate-500">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                        Corporis,
-                        saepe. Tempore vitae debitis consequatur voluptatum perspiciatis, cumque, veniam nulla, sint
-                        autem
-                        tenetur odit qui esse ratione ab alias! Tempora, ducimus.</p>
+                    <div class="p-8">
+                        <div class="uppercase tracking-wide text-xl text-[#3F72AF] font-semibold pb-4">Rizki Mahjati
+                            Prie
+                            Husna
+                        </div>
+                        <a href="#" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">Back
+                            End
+                            Developer</a>
+                        <p class="mt-2 text-slate-500">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                            Corporis,
+                            saepe. Tempore vitae debitis consequatur voluptatum perspiciatis, cumque, veniam nulla, sint
+                            autem
+                            tenetur odit qui esse ratione ab alias! Tempora, ducimus.</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Amanda Rizkyta Hamidah -->
-        <div class="bg-[#DBE2EF] border-[#707070] rounded-xl shadow-md overflow-hidden m-8">
-            <div class="md:flex">
-                <div class="md:shrink-0">
-                    <img class="h-48 w-full object-cover md:h-full md:w-48" src="static/Asset/amanda.jpg" alt="Emoji">
-                </div>
-                <div class="p-8">
-                    <div class="uppercase tracking-wide text-xl text-indigo-500 font-semibold pb-4">Amanda Rizkyta
-                        Hamidah
+            <!-- Amanda Rizkyta Hamidah -->
+            <div class="bg-[#DBE2EF] border-[#707070] rounded-xl shadow-md overflow-hidden m-8">
+                <div class="md:flex">
+                    <div class="md:shrink-0">
+                        <img class="h-48 w-full object-cover md:h-full md:w-48" src="static/asset/amanda.jpg"
+                            alt="Emoji">
                     </div>
-                    <a href="#" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">UI
-                        UX
-                        Designer</a>
-                    <p class="mt-2 text-slate-500">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                        Corporis,
-                        saepe. Tempore vitae debitis consequatur voluptatum perspiciatis, cumque, veniam nulla, sint
-                        autem
-                        tenetur odit qui esse ratione ab alias! Tempora, ducimus.</p>
+                    <div class="p-8">
+                        <div class="uppercase tracking-wide text-xl text-[#3F72AF] font-semibold pb-4">Amanda Rizkyta
+                            Hamidah
+                        </div>
+                        <a href="#" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">UI
+                            UX
+                            Designer</a>
+                        <p class="mt-2 text-slate-500">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                            Corporis,
+                            saepe. Tempore vitae debitis consequatur voluptatum perspiciatis, cumque, veniam nulla, sint
+                            autem
+                            tenetur odit qui esse ratione ab alias! Tempora, ducimus.</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Tiara Lailatul Nikmah -->
-        <div class="bg-[#DBE2EF] border-[#707070] rounded-xl shadow-md overflow-hidden m-8">
-            <div class="md:flex">
-                <div class="md:shrink-0">
-                    <img class="h-48 w-full object-cover md:h-full md:w-48" src="static/Asset/tiara.jpg" alt="Emoji">
-                </div>
-                <div class="p-8">
-                    <div class="uppercase tracking-wide text-xl text-indigo-500 font-semibold pb-4">Tiara Lailatul
-                        Nikmah
+            <!-- Tiara Lailatul Nikmah -->
+            <div class="bg-[#DBE2EF] border-[#707070] rounded-xl shadow-md overflow-hidden m-8">
+                <div class="md:flex">
+                    <div class="md:shrink-0">
+                        <img class="h-48 w-full object-cover md:h-full md:w-48" src="static/asset/tiara.jpg"
+                            alt="Emoji">
                     </div>
-                    <a href="#"
-                        class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">Front-End
-                        Developer</a>
-                    <p class="mt-2 text-slate-500">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                        Corporis,
-                        saepe. Tempore vitae debitis consequatur voluptatum perspiciatis, cumque, veniam nulla, sint
-                        autem
-                        tenetur odit qui esse ratione ab alias! Tempora, ducimus.</p>
+                    <div class="p-8">
+                        <div class="uppercase tracking-wide text-xl text-[#3F72AF] font-semibold pb-4">Tiara Lailatul
+                            Nikmah
+                        </div>
+                        <a href="#"
+                            class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">Front-End
+                            Developer</a>
+                        <p class="mt-2 text-slate-500">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                            Corporis,
+                            saepe. Tempore vitae debitis consequatur voluptatum perspiciatis, cumque, veniam nulla, sint
+                            autem
+                            tenetur odit qui esse ratione ab alias! Tempora, ducimus.</p>
+                    </div>
                 </div>
             </div>
         </div>
         </div>
     </main>
-
-    <footer
-        class="bg-[#112D4E] border-[#707070] shadow md:flex md:items-center justify-between p-4 dark:bg-gray-800 bottom-0">
-        <span class="text-sm justify-center items-center text-white sm:text-center dark:text-white">&#169; All Rights
-            Reserved
-            Copyright 2022</span>
-        <ul class="flex flex-wrap items-center mt-3 text-sm text-white dark:text-gray-400 sm:mt-0">
-
-
-            <li>
-                <a href="#!" class="mr-6 text-white">
-                    TERMS
-                </a>
-            </li>
-            <li>
-                <a href="#!" class="mr-6 text-white">
-                    PRIVACY POLICY
-                </a>
-            </li>
-
-        </ul>
+    <footer class="flex-none">
+        <div class="container py-4 text-center bg-[#1F2937]">
+            <span class="text-base text-white">© All Rights Reserved Copyright 2022</span>
+        </div>
     </footer>
-    <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
 </body>
+<script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
 
 </html>

@@ -7,19 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fitur 1</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.7/dist/flowbite.min.css" />
     {{ dropzone.load_css() }}
     {{ dropzone.style('border: 2px dashed #0087F7;') }}
 </head>
+<!-- <body class="flex flex-col container min-h-screen w-full">
+    <header class="flex-none">
+        <div class="container bg-slate-700 py-4 text-center">
+            <span class="md:text-xl text-base text-white">Navigasi</span>
+        </div>
+    </header> -->
 
-<body class="font-mono">
-    <header class="m-0">
+<body class="relative container h-screen w-full font-mono">
+    <header>
         <nav class="bg-[#112D4E] border-[#707070] px-2 py-2.5 dark:bg-gray-800">
             <div class="container flex flex-wrap justify-between items-center">
                 <a href="{{ url_for('index') }}" class="flex items-center ml-10">
                     <img src="static/Asset/GOOCR.png" class="mr-3 h-6 sm:h-9" alt="Logo">
                     <span
-                        class="self-center text-xl font-semibold whitespace-nowrap text-white dark:text-white">GOOCR</span>
+                        class="self-center text-xl font-semibold whitespace-nowrap text-white dark:text-white">GoOCR</span>
                 </a>
                 <div class="flex md:order-1">
                     <button data-collapse-toggle="mobile-menu-4" type="button"
@@ -49,6 +54,11 @@
                                 aria-current="page">Home</a>
                         </li>
                         <li>
+                            <a href="howitwork" class="block py-2 pr-4 pl-3 text-white  md:p-0 hover:font-bold">How
+                                it
+                                works</a>
+                        </li>
+                        <li>
                             <a href="about_us"
                                 class="block py-2 pr-4 pl-3 text-white font-light border-b border-gray-100 hover:bg-gray-50 hover:text-black md:hover:bg-transparent md:border-0 md:hover:font-bold md:hover:text-white md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About
                                 Us</a>
@@ -59,54 +69,63 @@
             </div>
         </nav>
     </header>
-    <main class="flex w-full">
-        <div class="flex flex-col md:flex-row container w-full">
-            <div class="bg-[#DBE2EF] border-[#707070] basis-1/2 md:flex-1 md:bg-[#DBE2EF]">
-                <img src="/static/Asset/infograf.svg" class="scale-25 -py-100" alt="Infografik">
+    <section class="mb-24">
+        <main>
+            <div class="container mx-auto mt-20" id="fitur">
+                <div class="grid md:grid-cols-2 gap-16 md:w-7/12 w-1/2 mx-auto">
+                    <div class="h-72 w-72 bg-[#DBE2EF] p-4 mx-auto shadow-lg border-gray-700 ">
+                        <div>
 
-            </div>
-            <div class="flex md:mx-auto flex-2 p-4 basis-1/2 bg-white w-1/2 h-full text-center">
-                <div class="w-full mx-auto">
-                    <h2 class="text-2xl font-bold mt-10">Pengenalan Tulisan Pada Gambar</h2>
-                    <h3>Silakan Upload Gambar Anda</h3>
-                    <p class="text-xs">(*PNG, JPG, PDF)</p>
-                    <form class="w-3/4 mx-auto my-4 -mt-3 " action="{{ url_for('upload_file') }}" method="POST"
-                        enctype="multipart/form-data">
-                        <img class="scale-75 mx-auto" src="static/Asset/upload.png" alt="Cloud upload_file">
-                        {{ dropzone.create() }}
-                        <input class="mt-8 p-4 bg-[#3F72AF] text-white text-center" type="submit" id="submit"
-                            value="Upload">
-                    </form>
-                    <!-- <h1>Fitur 1</h1> -->
-                    <!-- <a href="{{ url_for('index') }}">Back</a> -->
+                            <div class="flex w-full h-full text-center flex-col flex-auto">
+                                <div><img class="w-1/3 md:shrink-0 mx-auto mt-2" src="static/Asset/images icon.png"
+                                        alt="photo">
+                                </div>
+
+                                <h5 class="text-lg text-black font-bold mt-6 mb-8">
+                                    IMAGES TO PDF</h5>
+                                <!-- <p class="text-[10px] text-black mb-8">Allowed Files Type Are JPG & PDF</p> -->
+                                <a href="fitur1pdf"
+                                    class="text-base font-semibold mx-auto text-white w-40 h-12 bg-[#3F72AF] py-3 px-8 rounded hover:shadow-lg hover:opacity-80">Upload
+                                    Now</a>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="h-72 w-72 bg-[#DBE2EF] border-[#707070] p-4 shadow-lg">
+                        <div>
+
+                            <div class="flex w-full h-full text-center flex-col flex-auto md: mx-auto">
+                                <div><img class="w-1/3 md:shrink-0 mx-auto" src="static/Asset/camera icon.png"
+                                        alt="camera">
+                                </div>
+
+                                <h5 class="text-lg text-black font-bold m-5 ">IMAGES TO TEXT</h5>
+                                <a href="fitur1text"
+                                    class="text-base font-semibold mx-auto mb-4 text-white bg-[#3F72AF] w-40 h-12 py-3 px-8 rounded hover:shadow-lg hover:opacity-80 transition duration-300 ease-in-out">Upload
+                                    Now</a>
+                            </div>
+
+                        </div>
+
+                    </div>
                 </div>
             </div>
+        </main>
+    </section>
+    <footer class="flex-none">
+        <div class="container py-4 text-center bottom bg-[#1F2937]">
+            <span class="text-base text-white">© All Rights Reserved Copyright 2022</span>
         </div>
-    </main>
-
-    <footer
+    </footer>
+    <!-- <footer
         class="bg-[#112D4E] border-[#707070] shadow md:flex md:items-center justify-between p-4 dark:bg-gray-800 bottom-0">
         <span class="text-sm justify-center items-center text-white sm:text-center dark:text-white">&#169; All Rights
             Reserved
             Copyright 2022</span>
-        <ul class="flex flex-wrap items-center mt-3 text-sm text-white dark:text-gray-400 sm:mt-0">
-
-            <li>
-                <a href="#!" class="mr-6 text-white">
-                    TERMS
-                </a>
-            </li>
-            <li>
-                <a href="#!" class="mr-6 text-white">
-                    PRIVACY POLICY
-                </a>
-            </li>
-
-        </ul>
-    </footer>
+    </footer> -->
     {{ dropzone.load_js() }}
     {{ dropzone.config() }}
-    <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
 </body>
 
 </html>

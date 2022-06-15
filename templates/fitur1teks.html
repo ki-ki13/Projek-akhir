@@ -11,12 +11,12 @@
     {{ dropzone.style('border: 2px dashed #0087F7;') }}
 </head>
 
-<body class="flex flex-col container min-h-screen w-full">
+<body class="flex flex-col container min-h-screen w-full font-mono">
     <header>
-        <nav class="bg-[#112D4E] border-[#707070] px-2 py-2.5 dark:bg-gray-800">
+        <nav class="bg-[#1F2937] px-2 py-2.5 dark:bg-gray-800">
             <div class="container flex flex-wrap justify-between items-center">
-                <a href="{{ url_for('index') }}" class="flex items-center ml-10">
-                    <img src="static/Asset/GOOCR.png" class="mr-3 h-6 sm:h-9" alt="Logo">
+                <a href="{{ url_for('index') }}" class="flex items-center md:ml-10">
+                    <img src="static/asset/GOOCR2.png" class="mr-3 h-6 sm:h-9" alt="Logo">
                     <span
                         class="self-center text-xl font-semibold whitespace-nowrap text-white dark:text-white">GoOCR</span>
                 </a>
@@ -41,23 +41,18 @@
                 <div class="hidden justify-between w-full md:flex md:w-auto md:order-1" id="mobile-menu-4">
                     <ul
                         class="flex flex-col justify-between md:items-center mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium mr-20">
-
                         <li>
                             <a href="{{ url_for('index') }}"
-                                class="block py-2 pr-4 pl-3 text-black bg-white rounded md:bg-transparent md:text-white md:p-0 dark:text-white"
-                                aria-current="page">Home</a>
+                                class="block py-2 pr-4 pl-3 text-white  md:p-0 hover:font-bold hover:font-bold">Home</a>
                         </li>
                         <li>
-                            <a href="howitwork" class="block py-2 pr-4 pl-3 text-white  md:p-0 hover:font-bold">How
-                                it
+                            <a href="howitwork" class="block py-2 pr-4 pl-3 text-white  md:p-0 hover:font-bold">How it
                                 works</a>
                         </li>
                         <li>
-                            <a href="about_us"
-                                class="block py-2 pr-4 pl-3 text-white font-light border-b border-gray-100 hover:bg-gray-50 hover:text-black md:hover:bg-transparent md:border-0 md:hover:font-bold md:hover:text-white md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About
+                            <a href="about_us" class="block py-2 pr-4 pl-3 text-white  md:p-0 hover:font-bold">About
                                 Us</a>
                         </li>
-
                     </ul>
                 </div>
             </div>
@@ -65,25 +60,27 @@
     </header>
     <main class="flex flex-grow">
         <div class="flex flex-col md:flex-row container w-full">
-            <div class="invisible md:visible md:flex-1 md:bg-slate-500">
-                <h2 class="text-lg text-white">Ilustrasi</h2>
+            <div class="bg-[#DBE2EF] border-[#707070] basis-1/2 md:flex-1 md:bg-[#DBE2EF]">
+                <img src="/static/asset/infograf.svg" class="scale-25 -py-100" alt="Infografik">
+
             </div>
             <div class="flex mb-4 md:m-auto flex-1 bg-white w-full h-full text-center">
                 <div class="w-full m-auto">
                     {% if pesan != None %}
                     <h1>{{pesan}}</h1>
                     {% endif %}
-                    <h2 class="text-2xl mb-4 md:mb-10">Judul</h2>
-                    <p class="text-2xl mb-4 md:mb-10">Unggah Gambar</p>
+                    <h2 class="text-2xl font-bold mt-12">IMAGES TO TEXT WITH TRANSLATION</h2>
+                    <p class="text-xs">(*PNG, JPG, JPEG, PDF)</p>
+                    <img class="scale-75 mx-auto" src="static/Asset/upload.png" alt="Cloud upload_file">
                     <div class="w-3/4 m-auto">
                         {{ dropzone.create(action='fitur1text') }}
                     </div>
-                    <form class="w-3/4 m-auto" action="{{ url_for('to_teks') }}" method="POST">
+                    <form class="w-3/4 lg:m-16 mx-auto" action="{{ url_for('to_teks') }}" method="POST">
                         <div class="flex flex-col md:flex-row justify-between mt-4">
-                            <div class="flex-1">
-                                <h2 class="text-base text-center md:text-left mb-2">Asal Bahasa</h2>
-                                <select class="dropdown  p-4  md:float-left md:m-0 mb-4" placeholder="Asal Bahasa"
-                                    name="asal">
+                            <div class="flex-1  m-auto  m-auto text-center">
+                                <h2 class="my-4 lg:-ml-8 text-[#3F72AF] text-lg">Select the Language</h2>
+                                <select class="dropdown  p-3 bg-[#3F72AF] text-white md:float-left md:m-0"
+                                    placeholder="Asal Bahasa" name="asal">
                                     <button
                                         class="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
                                         <span class="mr-1">Asal Bahasa</span>
@@ -96,17 +93,19 @@
                                     <ul class="dropdown-menu absolute hidden text-gray-700 pt-1">
                                         {% for key, value in foobar.items() %}
                                         <option value="{{ value }}"
-                                            class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
+                                            class="rounded-t bg-gray-200 hover:bg-gray-400 text-black py-2 px-4 block whitespace-no-wrap">
                                             {{ value }}
                                         </option>
                                         {% endfor %}
                                     </ul>
                                 </select>
                             </div>
-                            <div class="flex-1">
-                                <h2 class="text-base text-center md:text-left mb-2">Tujuan Bahasa</h2>
-                                <select class="dropdown  p-4 mb-4 md:m-0 md:float-left" placeholder="Tujuan Bahasa"
-                                    name="tujuan">
+                            <div class="flex-2">
+                                <p class="mb-4 lg:mt-20 lg:ml-6 text-[#3F72AF]">to</p>
+                            </div>
+                            <div class="flex-1 lg:ml-8 text-center">
+                                <select class="dropdown bg-[#3F72AF] text-white p-3 lg:mt-16 md:m-0 md:float-left"
+                                    placeholder="Tujuan Bahasa" name="tujuan">
                                     <button
                                         class="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
                                         <span class="mr-1">Asal Bahasa</span>
@@ -119,7 +118,7 @@
                                     <ul class="dropdown-menu absolute hidden text-gray-700 pt-1">
                                         {% for key, value in foobar.items() %}
                                         <option value="{{ value }}"
-                                            class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
+                                            class="rounded-t bg-gray-200 hover:bg-gray-400 text-black py-2 px-4 block whitespace-no-wrap">
                                             {{ value }}
                                         </option>
                                         {% endfor %}
@@ -127,13 +126,9 @@
                                 </select>
                             </div>
                         </div>
-                        <h2 class="text-base my-3"> Note : Pilih bahasa yang sama pada tujuan bahasa, jika tidak ingin
-                            diterjemahkan</h2>
-                        <input class="mt-4 p-4 w-44 bg-slate-700 text-white text-center cursor-pointer" type="submit"
-                            id="submit" value="Upload" />
+                        <input class="mt-4 p-2 lg:ml-8 w-36 bg-[#3F72AF] text-white text-center cursor-pointer"
+                            type="submit" id="submit" value="Upload" />
                     </form>
-                    <!-- <h1>Fitur 1</h1> -->
-                    <!-- <a href="{{ url_for('index') }}">Back</a> -->
                 </div>
             </div>
         </div>
@@ -147,5 +142,6 @@
     {{ dropzone.load_js() }}
     {{ dropzone.config() }}
 </body>
+<script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
 
 </html>

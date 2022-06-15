@@ -19,10 +19,10 @@
 
 <body class="relative container h-screen w-full font-mono">
     <header>
-        <nav class="bg-[#112D4E] border-[#707070] px-2 py-2.5 dark:bg-gray-800">
+        <nav class="bg-[#1F2937] px-2 py-2.5 dark:bg-gray-800">
             <div class="container flex flex-wrap justify-between items-center">
-                <a href="{{ url_for('index') }}" class="flex items-center ml-10">
-                    <img src="static/Asset/GOOCR.png" class="mr-3 h-6 sm:h-9" alt="Logo">
+                <a href="{{ url_for('index') }}" class="flex items-center md:ml-10">
+                    <img src="static/asset/GOOCR2.png" class="mr-3 h-6 sm:h-9" alt="Logo">
                     <span
                         class="self-center text-xl font-semibold whitespace-nowrap text-white dark:text-white">GoOCR</span>
                 </a>
@@ -47,23 +47,18 @@
                 <div class="hidden justify-between w-full md:flex md:w-auto md:order-1" id="mobile-menu-4">
                     <ul
                         class="flex flex-col justify-between md:items-center mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium mr-20">
-
                         <li>
                             <a href="{{ url_for('index') }}"
-                                class="block py-2 pr-4 pl-3 text-black bg-white rounded md:bg-transparent md:text-white md:p-0 dark:text-white"
-                                aria-current="page">Home</a>
+                                class="block py-2 pr-4 pl-3 text-white  md:p-0 hover:font-bold hover:font-bold">Home</a>
                         </li>
                         <li>
-                            <a href="howitwork" class="block py-2 pr-4 pl-3 text-white  md:p-0 hover:font-bold">How
-                                it
+                            <a href="howitwork" class="block py-2 pr-4 pl-3 text-white  md:p-0 hover:font-bold">How it
                                 works</a>
                         </li>
                         <li>
-                            <a href="about_us"
-                                class="block py-2 pr-4 pl-3 text-white font-light border-b border-gray-100 hover:bg-gray-50 hover:text-black md:hover:bg-transparent md:border-0 md:hover:font-bold md:hover:text-white md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About
+                            <a href="about_us" class="block py-2 pr-4 pl-3 text-white  md:p-0 hover:font-bold">About
                                 Us</a>
                         </li>
-
                     </ul>
                 </div>
             </div>
@@ -81,11 +76,11 @@
                                         alt="photo">
                                 </div>
 
-                                <h5 class="text-lg text-black font-bold mt-6 mb-8">
-                                    IMAGES TO PDF</h5>
-                                <!-- <p class="text-[10px] text-black mb-8">Allowed Files Type Are JPG & PDF</p> -->
+                                <h5 class="text-lg text-black font-bold mt-6">
+                                    CONVERT TO PDF</h5>
+                                <p class="text-[10px] text-black mb-8">Allowed Files Type Are JPG & PDF</p>
                                 <a href="fitur1pdf"
-                                    class="text-base font-semibold mx-auto text-white w-40 h-12 bg-[#3F72AF] py-3 px-8 rounded hover:shadow-lg hover:opacity-80">Upload
+                                    class="text-base mx-auto text-white bg-[#3F72AF] w-40 h-8 py-1 px-8 rounded hover:shadow-lg hover:opacity-80">Upload
                                     Now</a>
 
                             </div>
@@ -96,13 +91,13 @@
                         <div>
 
                             <div class="flex w-full h-full text-center flex-col flex-auto md: mx-auto">
-                                <div><img class="w-1/3 md:shrink-0 mx-auto" src="static/Asset/camera icon.png"
+                                <div><img class="w-2/5 md:shrink-0 mx-auto mt-2" src="static/asset/translate.png"
                                         alt="camera">
                                 </div>
 
-                                <h5 class="text-lg text-black font-bold m-5 ">IMAGES TO TEXT</h5>
+                                <h5 class="text-lg text-black font-bold m-5">CONVERT TO TEXT WITH TRANSLATION</h5>
                                 <a href="fitur1text"
-                                    class="text-base font-semibold mx-auto mb-4 text-white bg-[#3F72AF] w-40 h-12 py-3 px-8 rounded hover:shadow-lg hover:opacity-80 transition duration-300 ease-in-out">Upload
+                                    class="text-base mx-auto mb-4 mt-2 text-white bg-[#3F72AF] w-40 h-8 py-1 px-8 rounded hover:shadow-lg hover:opacity-80 transition duration-300 ease-in-out">Upload
                                     Now</a>
                             </div>
 
@@ -127,5 +122,6 @@
     {{ dropzone.load_js() }}
     {{ dropzone.config() }}
 </body>
+<script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
 
 </html>

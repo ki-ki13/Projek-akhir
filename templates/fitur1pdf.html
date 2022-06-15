@@ -14,7 +14,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap" rel="stylesheet">
 </head>
 <body class="flex flex-col container min-h-screen w-full font-mono">
-    <header class="flex-none">
       <header class="flex-none">
         <nav class="bg-[#1F2937] px-2 py-2.5 dark:bg-gray-800">
             <div class="container flex flex-wrap justify-between items-center">
@@ -63,8 +62,8 @@
     </header>
     <main class="flex flex-grow">
       <div class="flex flex-col md:flex-row container w-full">
-        <div class="bg-[#DBE2EF] border-[#707070] basis-1/2 md:flex-1 md:bg-[#DBE2EF]">
-          <img src="{{ url_for('static', filename='asset/infograf.svg')}}" class="scale-25 -py-100" alt="Infografik">
+        <div class="bg-[#DBE2EF] border-[#707070]  md:flex-1 md:bg-[#DBE2EF] invisible h-0 md:visible md:h-auto">
+          <img src="{{ url_for('static', filename='asset/infograf.svg')}}" class="h-0 md:h-auto scale-25  -py-100" alt="Infografik">
   
         </div>
         <div class="flex mb-4 md:m-auto flex-1 bg-white w-full h-full text-center">

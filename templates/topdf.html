@@ -5,16 +5,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fitur 2</title>
+    <title>GOOCR</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.7/dist/flowbite.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap" rel="stylesheet">
 </head>
 
 <body class="flex flex-col container min-h-screen w-full font-mono">
-    <header>
-        <nav class="bg-[#112D4E] px-2 py-2.5 dark:bg-gray-800">
+    <header class="flex-none">
+        <nav class="bg-[#1F2937] px-2 py-2.5 dark:bg-gray-800">
             <div class="container flex flex-wrap justify-between items-center">
                 <a href="{{ url_for('index') }}" class="flex items-center md:ml-10">
-                    <img src="/static/asset/GOOCR2.png" class="mr-3 h-6 sm:h-9" alt="Logo">
+                    <img src="{{ url_for('static', filename='asset/GOOCR2.png')}}" class="mr-3 h-6 sm:h-9" alt="Logo">
                     <span
                         class="self-center text-xl font-semibold whitespace-nowrap text-white dark:text-white">GoOCR</span>
                 </a>
@@ -41,16 +45,14 @@
                         class="flex flex-col justify-between md:items-center mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium mr-20">
                         <li>
                             <a href="{{ url_for('index') }}"
-                                class="block py-2 pr-4 pl-3 text-white  md:p-0 hover:font-bold hover:font-bold">Home</a>
+                                class="block py-2 pr-4 pl-3 text-white  md:p-0 hover:font-bold">Home</a>
                         </li>
                         <li>
-                            <a href="howitwork"
-                                class="block py-2 pr-4 pl-3 text-white font-lightmd:p-0 hover:font-bold">How it
+                            <a href="howitwork" class="block py-2 pr-4 pl-3 text-white  md:p-0 hover:font-bold">How it
                                 works</a>
                         </li>
                         <li>
-                            <a href="about_us"
-                                class="block py-2 pr-4 pl-3 text-white font-lightmd:p-0 hover:font-bold">About
+                            <a href="about_us" class="block py-2 pr-4 pl-3 text-white  md:p-0 hover:font-bold">About
                                 Us</a>
                         </li>
                     </ul>
@@ -59,17 +61,29 @@
         </nav>
     </header>
     <main class="flex flex-col flex-grow">
-        <h1>Hasil PDF</h1>
+        <div class="md:m-auto mx-3 my-auto bg-[#DBE2EF] md:w-1/2 text-center rounded-lg p-6">
+            <h1 class="text-2xl font-bold p-6 text-[#3F72AF]">PDF Result</h1>
+            <div>
+                <img class="w-44 mx-auto" src="{{ url_for('static', filename='asset/download.svg')}}"
+                    alt="Cloud upload_file">
+            </div>
 
-        <a href="{{url_for('savefile')}}">Download</a>
+            <h2 class="text-lg  pb-4 px-4 pt-0"> Your PDF is ready</h2>
+            <div class="w-full my-6 h-full">
+                <a href="{{url_for('savefile')}}"
+                    class="bg-[#3F72AF] py-4 px-12 rounded-md cursor-pointer text-white text-bold">Download</a>
+            </div>
+        </div>
     </main>
 
     <footer class="flex-none">
-        <div class="container py-4 text-center bottom bg-[#112D4E]">
-            <span class="text-base text-white">© All Rights Reserved Copyright 2022</span>
-        </div>
+        <footer class="flex-none">
+            <div class="container py-4 text-center bg-[#1F2937]">
+                <span class="text-base text-white">© All Rights Reserved Copyright 2022</span>
+            </div>
+        </footer>
     </footer>
+    <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
 </body>
-<script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
 
 </html>
